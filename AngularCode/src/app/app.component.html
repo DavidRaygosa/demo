@@ -1,0 +1,139 @@
+<div id="top-page"></div>
+<!-- Barra de navegación -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-bg-light shadow">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']" (click)="closeResponsiveNav()">
+      <img src="./assets/img/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+        alt="">
+        Demo
+    </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navResponsiveButton" (click)="setActiveNav()">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto text-center">
+        <li class="nav-item" id="history-nav">
+          <a class="nav-link" [routerLink]="['/historia']" (click)="closeResponsiveNav()">Historia</a>
+        </li>
+        <li class="nav-item" id="blog-nav">
+          <a class="nav-link" [routerLink]="['/blog']" (click)="closeResponsiveNav()">Blog</a>
+        </li>
+        <li class="nav-item" id="contact-nav">
+          <a class="nav-link" [routerLink]="['/contacto']" (click)="closeResponsiveNav()">Contacto</a>
+        </li>
+      </ul>
+      <span class="navbar-text d-flex order-lg-1 order-0 justify-content-center">
+        <a class="nav-link" href="#">
+          <span> 
+            <i class="fab fa-facebook-f fab-facebook-color socialnav-hover-effect"></i>
+          </span>
+        </a>
+        <a class="nav-link" href="#">
+          <span>
+            <i class="fab fa-instagram fab-instagram-color socialnav-hover-effect"></i>
+          </span>
+        </a>
+        <a class="nav-link" href="#">
+          <span>
+            <i class="fab fa-twitter fab-twitter-color socialnav-hover-effect"></i>
+          </span>
+        </a>
+        <a class="nav-link" href="#">
+          <span>
+            <i class="fab fa-youtube fab-youtube-color socialnav-hover-effect"></i>
+          </span>
+        </a>
+        <a class="nav-link" href="#">
+          <span>
+            <i class="fab fa-linkedin-in fab-linkedin-color socialnav-hover-effect"></i>
+          </span>
+        </a>
+      </span>
+    </div>
+  </div>
+</nav>
+
+ <!-- Router Outlet --> 
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+
+<!--Iconos de Redes Sociales (Font Awesome 5 Social Network Icons)-->
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+    <div class="col-12 padding">
+      <h2>Visita nuestras Redes Sociales</h2>
+    </div>
+    <div class="col-12 social padding">
+      <a href="#"><span><i
+            class="fab fa-facebook fab-facebook-color"></i></span></a>
+      <a href="#"><span><i
+            class="fab fa-instagram fab-instagram-color"></i></span></a>
+      <a href="#"><span><i class="fab fa-twitter fab-twitter-color"></i></span></a>
+      <a href="#"><span><i
+            class="fab fa-youtube fab-youtube-color"></i></span></a>
+      <a href="#"><span><i class="fab fa-linkedin-in fab-linkedin-color"></i></span></a>
+    </div>
+  </div>
+</div>
+
+<!--Pie de página (Footer)-->
+  <footer class="footer-bgcolor">
+    <div class="container padding">
+      <div class="row text-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <img src="assets/img/bootstrap-solid.svg" width="56.5" height="56.5" alt="">
+          <hr class="footer-light">
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> &nbsp; <strong>Teléfono:</strong> &nbsp; 5555555555</li>
+            <li class="mt-2"><i class="fas fa-at"></i> &nbsp; <strong>E-Mail:&nbsp;</strong><a
+                href="mailto:demo@demo.com" style="color:#d5d5d5;">demo@demo.com</a>
+            </li>
+            <li class="mt-2"><i class="fas fa-map-marker-alt"></i>&nbsp;<strong>Dirección:</strong>&nbsp;
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <hr class="footer-light">
+          <h5 class="font-weight-bold text-uppercase"><i class="fas fa-clock"></i>&nbsp;Horarios</h5>
+          <hr class="footer-light">
+          <ul class="list-unstyled">
+            <li><strong>Lun-Vie:</strong>&nbsp;9:00 a.m - 18:00 p.m.</li>
+            <li class="mt-2"><strong>Sábado:</strong>&nbsp;9:00 a.m - 13:00 p.m.</li>
+            <li class="mt-2"><strong>Domingo:</strong>&nbsp;Cerrado</li>
+            <li class="mt-2"><strong>Días festivos:</strong>&nbsp;Cerrado</li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <hr class="footer-light">
+          <h5 class="font-weight-bold text-uppercase"><i class="fas fa-home"></i>&nbsp;Secciones</h5>
+          <hr class="footer-light">
+          <ul class="list-unstyled">
+            <li class="mt-2"><a [routerLink]="['/']" style="color:#d5d5d5;">Inicio</a></li>
+            <li class="mt-2"><a [routerLink]="['/blog']" style="color:#d5d5d5;">Blog</a></li>
+            <li class="mt-2"><a [routerLink]="['/historia']" style="color:#d5d5d5;">Historia</a></li>
+            <li class="mt-2"><a [routerLink]="['/contacto']" style="color:#d5d5d5;">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12 justify-content-center mt-4">
+          <hr class="footer-light">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a [routerLink]="['/']" style="color:#d5d5d5;">Inicio</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a [routerLink]="['/terminos']" style="color:#d5d5d5;">Términos de uso</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a [routerLink]="['/privacidad']" style="color:#d5d5d5;">Política de
+                privacidad</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a [routerLink]="['/']" style="color:#d5d5d5;">Mapa del sitio</a></li>
+          </ul>
+          <hr class="footer-light">
+        </div>
+        <div class="col-md-12">
+          <h5>Demo &copy; | 2020. Todo los derechos
+            reservados.</h5>
+        </div>
+      </div>
+    </div>
+  </footer>
