@@ -9,6 +9,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { BlogTemplateComponent } from './components/blog/blog-template/blog-template.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 //Routes
 
@@ -20,7 +22,8 @@ const appRoutes: Routes =
 	{path: 'contacto', component: ContactComponent},
 	{path: 'privacidad', component: PrivacyComponent},
 	{path: 'terminos', component: TermsComponent},
-	{path: '**', component: IndexComponent}
+	{path: 'blog/publicacion', component: BlogTemplateComponent},
+	{path: '**', component: NotfoundComponent}
 ]
 
 

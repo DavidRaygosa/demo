@@ -1,4 +1,4 @@
-<div class="header-item" style="background-image: url('https://source.unsplash.com/G26eJNYZA24/1920x1080');">
+<header class="header-item" style="background-image: url('https://source.unsplash.com/G26eJNYZA24/1920x1080');">
   <div class="container h-100">
     <div class="row h-100 header-caption align-items-center">
       <div class="col-12 text-center">
@@ -7,11 +7,11 @@
       </div>
     </div>
   </div>
-</div>
+</header>
 
 <div class="jumbotron jumbotron-fluid jumbotron-edit shadow rounded-0">
   <div class="container">
-    <h1 class="display-6 text-center">Volunteering</h1>
+    <h1 class="display-6 text-center">Voluntariado</h1>
     <p class="lead text-center">
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia vitae facilis nisi repellat, minus quisquam
       eaque asperiores eveniet!</p>
@@ -19,7 +19,95 @@
       <div class="col-md-6 ">
         <a href="https://www.google.com/intl/es_mx/forms/about/"
           class="btn btn-blue btn-lg btn-block shadow rounded-0" role="button"><i
-            class="far fa-file-alt fa-lg"></i>&nbsp;Register</a>
+            class="far fa-file-alt fa-lg"></i>&nbsp;Registrarse</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+      <h1 class="my-4">Blog
+        <small>Últimas publicaciones</small>
+      </h1>
+
+      <!-- Blog Post -->
+      <div class="card mb-4 shadow rounded-0">
+        <img class="card-img-top rounded-0" src="assets/img/blog-post-2.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">Como protegerse ante el COVID-19</h2>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
+            nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus
+            possimus, veniam magni quis!</p>
+          <a [routerLink]="['/blog/publicacion']" class="btn btn-blue rounded-0">Leer más &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+          Publicado el 1 de Octubre, 2020 a las 00:00 PM por
+          <a href="#">Demo</a>
+        </div>
+      </div>
+
+      <!--Blog Post-->
+      <div class="card mb-4 shadow rounded-0">
+        <img class="card-img-top rounded-0" src="assets/img/blog-post-1.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">¡Por el derecho a la vida!</h2>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
+            nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus
+            possimus, veniam magni quis!</p>
+          <a [routerLink]="['/blog/publicacion']" class="btn btn-blue rounded-0">Leer más &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+          Publicado el 1 de Septiembre, 2020 a las 00:00 PM por
+          <a href="#">Demo</a>
+        </div>
+      </div>
+
+      <!--Paginación-->
+      <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+          <a class="page-link rounded-0" href="#">&larr; Anterior</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link rounded-0" href="#">Siguiente &rarr;</a>
+        </li>
+      </ul>
+    </div>
+
+    <!--Barra lateral-->
+    <div class="col-md-4">
+      <!--Buscardor-->
+      <div class="card bg-light my-4 shadow rounded-0">
+        <h5 class="card-header">Buscardor de publicaciones</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control rounded-0" placeholder="Buscador">
+            <span class="input-group-append">
+              <button class="btn btn-blue rounded-0" type="button">Buscar</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!--Avisos-->
+      <div class="card text-white bg-secondary border-secondary my-4 shadow rounded-0">
+        <h5 class="card-header">Avisos</h5>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ab ad
+            repudiandae vero ducimus,
+            perspiciatis dolor mollitia quidem praesentium labore molestias recusandae cupiditate officia.</p>
+        </div>
+      </div>
+      <!--Inicio de sesión-->
+      <div class="card text-white bg-dark border-dark my-4 shadow rounded-0">
+        <h5 class="card-header">Iniciar sesión</h5>
+        <div class="card-body text-center">
+          <button type="button" class="btn btn-block btn-blue rounded-0">Ingresar (Usuario registrado)</button>
+          <button type="button" class="btn btn-block btn-danger rounded-0">Registrar (Nuevo usuario)</button>
+        </div>
       </div>
     </div>
   </div>

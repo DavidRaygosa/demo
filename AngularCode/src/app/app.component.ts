@@ -40,11 +40,11 @@ export class AppComponent {
 	setActiveNav()
 	{
 		// Get Current URL
-		this.currentRoute = this.router.url;
+		this.currentRoute = this.router.url.substring(1,5);
 		// If CurrenRoute match with any route, set classlist "Active"; else remove class "active" to all items
-		if(this.currentRoute == "/historia") document.getElementById("history-nav").classList.add("active");
-		else if(this.currentRoute == "/blog") document.getElementById("blog-nav").classList.add("active");
-		else if(this.currentRoute == "/contacto") document.getElementById("contact-nav").classList.add("active");
+		if(this.currentRoute == "hist") document.getElementById("history-nav").classList.add("active");
+		else if(this.currentRoute == "blog") document.getElementById("blog-nav").classList.add("active");
+		else if(this.currentRoute == "cont") document.getElementById("contact-nav").classList.add("active");
 	}
 
 	removeActiveNav()
