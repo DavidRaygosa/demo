@@ -19,7 +19,7 @@ const appRoutes: Routes =
 [
 	{path: '', component: IndexComponent},
 	{path: 'historia', component: HistoryComponent},
-	{path: 'blog', component: BlogComponent},
+	{path: 'blog/:page', component: BlogComponent},
 	{path: 'contacto', component: ContactComponent},
 	{path: 'privacidad', component: PrivacyComponent},
 	{path: 'terminos', component: TermsComponent},

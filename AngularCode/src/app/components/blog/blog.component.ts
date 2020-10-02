@@ -1,10 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { GeneralService } from '../../services/general.service';
+import {Location} from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostModel } from '../../models/post.model';
 import { NgAnimateScrollService } from 'ng-animate-scroll';
 import simpleParallax from 'simple-parallax-js';
 import ScrollReveal from 'scrollreveal'
+
 declare var $ : any;
 
 @Component({
@@ -19,19 +22,27 @@ export class BlogComponent implements OnInit {
 	public NumberofPagination;
 	public paginationList;
 	public rangePosts;
-	public selectedPage: number = 1;
-	public selectedListPage: number = 0;
+	public selectedPage:number;
+	public selectedListPage:number;
 	public viewListPage;
 	public innerWidth: any;
 	public responsive:boolean;
+	public loading:boolean;
 
-	constructor(private _postService:PostsService, private _generalService:GeneralService, private _animateScrollService: NgAnimateScrollService) 
-	{ 
-
-	}
+	constructor
+	(
+		private _location: Location,
+		private _router: Router,
+		private _route:ActivatedRoute,
+		private _postService:PostsService, 
+		private _generalService:GeneralService, 
+		private _animateScrollService: NgAnimateScrollService
+	) { }
 
 	ngOnInit(): void 
 	{		
+		// SET LOADING
+		this.loading = true;
 		// SET RESPONSIVE IN FALSE
 		this.responsive = false;
 		// GET WINDOW WIDTH
@@ -46,13 +57,14 @@ export class BlogComponent implements OnInit {
 		ScrollReveal().reveal('.header-text',{
 				delay: 100
 		});
-
-		// GET PAGINATION
-		this.NumberofPagination = [];
-		this.paginationList = [];
 		this._generalService.getGeneral().subscribe(
 			(response : any) =>
 			{
+				// SET LOADING TO FALSE (IT WILL SHOW POST CONTENT)
+				this.loading = false;
+				// GET PAGINATION LENGHT
+				this.NumberofPagination = [];
+				this.paginationList = [];
 				let count = 0;
 				for(let i = 0; i < Math.ceil(response.documents[0].lenght/5); i++)
 				{ 
@@ -64,15 +76,22 @@ export class BlogComponent implements OnInit {
 						this.paginationList.push('list');
 					}
 				}
+				// GET, SET AND ACTIVE PAGINATION NUMBER
+				this._route.params.subscribe(params =>
+				{
+					let page = params.page;
+					if(page > this.NumberofPagination.length) this._router.navigate(['/notpagefound'])
+					else
+					{
+						this.changePage(page, null);
+						this.setActivePagination(page);
+						// CALL POSTS BY RANGE
+						this.getPosts();
+						// SET LIST PAGINATION (ONLY 5 PAGE FOR LIST)
+						this.setListPage();
+					}	
+				});
 			});
-		// SET RANGE OF POSTS
-		this.changePage(1, null);
-
-		// CALL POSTS BY RANGE
-		this.getPosts();
-
-		// SET LIST PAGINATION (ONLY 5 PAGE FOR LIST)
-		this.setListPage();
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -90,6 +109,7 @@ export class BlogComponent implements OnInit {
 
 	changePage(numberofPage:number, target: HTMLElement)
 	{
+		this._location.go( '/blog/'+numberofPage );
 		if(numberofPage == 1) this.rangePosts = {skip: 0}
 		else this.rangePosts = {skip: (numberofPage-1)*5}
 		if(target != null) this._animateScrollService.scrollToElement('scrollToThis');
@@ -97,13 +117,25 @@ export class BlogComponent implements OnInit {
 	}
 
 	setActivePagination(index: number) 
-	{
-    	this.selectedPage = index;
+	{		
+		this.selectedListPage = Math.ceil(index/5)-1;
+		this.selectedPage = index;
+		setTimeout(()=>
+		{
+			let backButton = document.getElementById("backListButton") as HTMLSelectElement;
+			let nextButton = document.getElementById("nextListButton") as HTMLSelectElement;
+			this.checkIfDisabledBackListPage(backButton);
+			if(index > 5) this.checkIfDisabledNextListPage(nextButton);
+		},1);
    	}
 
    	setListPage()
    	{
-   		this.viewListPage = {start: 0,end: 5}
+		this.viewListPage = 
+		{
+			start: (this.selectedListPage*5),
+			end: (this.selectedListPage+1)*5
+		}
    	}
 
    	backListPage(click = false)
@@ -112,15 +144,20 @@ export class BlogComponent implements OnInit {
    		let nextButton = document.getElementById("nextListButton") as HTMLSelectElement;
    		nextButton.classList.remove("disabled");
    		if(click) this.selectedListPage--;
-   		if(this.selectedListPage == 0)
-   		{
-   			backButton.classList.add("disabled");
-   		} 
+   		this.checkIfDisabledBackListPage(backButton);
 		this.viewListPage = 
 		{
 			start: (this.selectedListPage*5),
 			end: (this.selectedListPage+1)*5
 		}
+   	}
+
+   	checkIfDisabledBackListPage(backButton)
+   	{
+   		if(this.selectedListPage == 0)
+   		{
+   			backButton.classList.add("disabled");
+   		} 
    	}
 
    	nextListPage(click = false)
@@ -129,15 +166,17 @@ export class BlogComponent implements OnInit {
    		let nextButton = document.getElementById("nextListButton") as HTMLSelectElement;
    		backButton.classList.remove("disabled");
    		if(click) this.selectedListPage++;
-   		if(this.selectedListPage == Math.ceil(this.paginationList.length))
-   		{
-   			nextButton.classList.add("disabled");
-   		} 
+   		this.checkIfDisabledNextListPage(nextButton);
 		this.viewListPage = 
 		{
 			start: (this.selectedListPage*5),
 			end: (this.selectedListPage+1)*5
 		}
+   	}
+
+   	checkIfDisabledNextListPage(nextButton)
+   	{
+	   	if(this.selectedListPage == Math.ceil(this.paginationList.length)) nextButton.classList.add("disabled");
    	}
 
    	startParoller()

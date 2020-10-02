@@ -33,34 +33,40 @@
     <div class="col-md-8">
       <h1 class="my-4">Publicaciones</h1>
 
-      <!-- Blog Post -->
-      <li class="li my-paroller thumbnail-card" *ngFor="let post of posts">
-        <div class="card mb-4 shadow rounded-0 wrap">
-          <img class="card-img-top rounded-0" src="assets/img/4k.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">{{post.title}}</h2>
-            <p class="card-text">{{post.subtitle}}</p>
-            <a [routerLink]="['/blog/publicacion',post._id]" class="btn btn-blue rounded-0">Leer más &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Publicado {{post.publication_date}} por:
-            <a href="#">Demo</a>
-          </div>
+      <div class="h-100 mt-5 d-flex justify-content-center align-items-center" *ngIf="loading">
+        <div class="spinner-border text-primary" role="status">
         </div>
-      </li>
+      </div>
+      <div *ngIf="!loading"> <!-- Show only when loading is finished -->
+        <!-- Blog Post -->
+        <li class="li my-paroller thumbnail-card" *ngFor="let post of posts">
+          <div class="card mb-4 shadow rounded-0 wrap">
+            <img class="card-img-top rounded-0" src="assets/img/4k.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{post.title}}</h2>
+              <p class="card-text">{{post.subtitle}}</p>
+              <a [routerLink]="['/blog/publicacion', post._id]" class="btn btn-blue rounded-0">Leer más &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Publicado {{post.publication_date}} por:
+              <a href="#">Demo</a>
+            </div>
+          </div>
+        </li>
 
-      <!--Paginación-->
-      <ul class="pagination justify-content-center mb-4">
-        <li id="backListButton" class="page-item disabled">
-          <a class="page-link rounded-0 clickeable noselect" (click)="backListPage(true)">&larr; <span class="d-none d-lg-inline"> Anterior </span></a>
-        </li>
-        <li class="page-item clickeable noselect" *ngFor="let page of NumberofPagination | slice: viewListPage.start:viewListPage.end; let indexOf=index;" [class.active]="selectedPage === page" (click)="setActivePagination(page)">
-          <a class="page-link noselect" (click)="changePage(page, topblog)">{{page}}</a>
-        </li>
-        <li id="nextListButton" class="page-item">
-          <a class="page-link rounded-0 clickeable noselect" (click)="nextListPage(true)"> <span class="d-none d-lg-inline"> Siguiente </span> &rarr; </a>
-        </li>
-      </ul>
+        <!--Paginación-->
+        <ul class="pagination justify-content-center mb-4">
+          <li id="backListButton" class="page-item">
+            <a class="page-link rounded-0 clickeable noselect" (click)="backListPage(true)">&larr; <span class="d-none d-lg-inline"> Anterior </span></a>
+          </li>
+          <li class="page-item clickeable noselect" *ngFor="let page of NumberofPagination | slice: viewListPage.start:viewListPage.end; let indexOf=index;" [class.active]="selectedPage == page" (click)="setActivePagination(page)">
+            <a class="page-link noselect" (click)="changePage(page, topblog)">{{page}}</a>
+          </li>
+          <li id="nextListButton" class="page-item">
+            <a class="page-link rounded-0 clickeable noselect" (click)="nextListPage(true)"> <span class="d-none d-lg-inline"> Siguiente </span> &rarr; </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!--Barra lateral-->
