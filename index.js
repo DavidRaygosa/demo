@@ -6,6 +6,22 @@ var port = 3700;
 app.set('port', process.env.PORT || port)
 
 mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb+srv://davidr97:Azullindo55@cluster0.ulby7.mongodb.net/projectdb?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+		.then
+		(
+			() =>
+				{
+					console.log("Conexion a la base de datos establecida satisfactoriamente...");
+					app.listen(app.get('port'), () => 
+					{
+ 						console.log("Servidor Corriendo Correctamente En Puerto: "+app.get('port'));
+					});
+				}
+		)
+
+		.catch(error => console.log(error));
+
 /* THIS LINE TO CONNECT DB
 mongoose.connect('mongodb://localhost:27017/clinic', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 		.then
@@ -22,9 +38,11 @@ mongoose.connect('mongodb://localhost:27017/clinic', { useNewUrlParser: true, us
 
 		.catch(error => console.log(error));
 */
-
-// THIS LINE TO CONNECT WITHOUT DB
+/* THIS LINE TO CONNECT WITHOUT DB
 app.listen(app.get('port'), () => 
 {
 		console.log("Servidor Corriendo Correctamente En Puerto: "+app.get('port'));
 });
+
+// THIS LINE TO CONNECT TO SERVER
+*/

@@ -11,6 +11,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { BlogTemplateComponent } from './components/blog/blog-template/blog-template.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ParallaxComponent } from './components/parallax/parallax.component';
 
 //Routes
 
@@ -22,7 +23,8 @@ const appRoutes: Routes =
 	{path: 'contacto', component: ContactComponent},
 	{path: 'privacidad', component: PrivacyComponent},
 	{path: 'terminos', component: TermsComponent},
-	{path: 'blog/publicacion', component: BlogTemplateComponent},
+	{path: 'parallax', component: ParallaxComponent},
+	{path: 'blog/publicacion/:id', component: BlogTemplateComponent},
 	{path: '**', component: NotfoundComponent}
 ]
 

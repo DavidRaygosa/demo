@@ -33,19 +33,19 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
+              "./src/styles.scss",
               "./node_modules/jquery-ui-dist/jquery-ui.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/fonts/fontawesome/css/css/all.min.css",
-              "src/assets/css/styles.css",
-              "src/assets/css/styles-min.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./src/assets/fonts/fontawesome/css/css/all.min.css",
+              "./src/assets/css/styles.css",
+              "./src/assets/css/styles-min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/jquery-ui-dist/jquery-ui.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./src/assets/main.js"
+              "./src/assets/js/facebooksdk.js"
             ]
           },
           "configurations": {

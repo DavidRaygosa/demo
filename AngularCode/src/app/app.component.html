@@ -1,5 +1,6 @@
 <div id="top-page"></div>
 <!-- Barra de navegación -->
+<div *ngIf="!parallax">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-bg-light shadow">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']" (click)="closeResponsiveNav()">
@@ -55,10 +56,12 @@
     </div>
   </div>
 </nav>
+</div>
 
  <!-- Router Outlet --> 
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 
+<div *ngIf="!parallax">
 <!--Iconos de Redes Sociales (Font Awesome 5 Social Network Icons)-->
 <div class="container-fluid padding">
   <div class="row text-center padding">
@@ -137,3 +140,4 @@
       </div>
     </div>
   </footer>
+</div>

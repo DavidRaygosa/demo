@@ -14,6 +14,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { BlogTemplateComponent } from './components/blog/blog-template/blog-template.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ParallaxComponent } from './components/parallax/parallax.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     PrivacyComponent,
     TermsComponent,
     BlogTemplateComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ParallaxComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ declare var $ : any; // Declare $ to Javascript
 export class AppComponent {
 	title = 'frontend';
 	public currentRoute : string; // Current Route
+	public parallax:boolean;
 
 	constructor(private router: Router)
 	{
@@ -27,6 +28,7 @@ export class AppComponent {
 	{
 		// Set Active NavBar Item
 		this.setActiveNav();
+		this.parallax = false;
 	}
 
 	onActivate(event) 
@@ -45,6 +47,7 @@ export class AppComponent {
 		if(this.currentRoute == "hist") document.getElementById("history-nav").classList.add("active");
 		else if(this.currentRoute == "blog") document.getElementById("blog-nav").classList.add("active");
 		else if(this.currentRoute == "cont") document.getElementById("contact-nav").classList.add("active");
+		else if(this.currentRoute == "para") this.parallax = true;
 	}
 
 	removeActiveNav()

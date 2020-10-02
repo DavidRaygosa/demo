@@ -1,9 +1,9 @@
-<header class="header-item" style="background-image: url('https://source.unsplash.com/G26eJNYZA24/1920x1080');">
-  <div class="container h-100">
-    <div class="row h-100 header-caption align-items-center">
-      <div class="col-12 text-center">
-        <h1 class="display-3">Blog</h1>
-        <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, in.</p>
+<header class="header-item thumbnail" style="background-image: url('https://source.unsplash.com/G26eJNYZA24/1920x1080');">
+  <div class="container h-100 no-scale header-text">
+    <div class="row h-100 header-caption align-items-center no-scale">
+      <div class="col-12 text-center no-scale">
+        <h1 class="display-3 no-scale">Blog</h1>
+        <p class="lead no-scale">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, in.</p>
       </div>
     </div>
   </div>
@@ -21,6 +21,7 @@
           class="btn btn-blue btn-lg btn-block shadow rounded-0" role="button"><i
             class="far fa-file-alt fa-lg"></i>&nbsp;Registrarse</a>
       </div>
+      <div id="scrollToThis" #topblog> </div>
     </div>
   </div>
 </div>
@@ -30,49 +31,34 @@
   <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-      <h1 class="my-4">Blog
-        <small>Últimas publicaciones</small>
-      </h1>
+      <h1 class="my-4">Publicaciones</h1>
 
       <!-- Blog Post -->
-      <div class="card mb-4 shadow rounded-0">
-        <img class="card-img-top rounded-0" src="assets/img/blog-post-2.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h2 class="card-title">Como protegerse ante el COVID-19</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
-            nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus
-            possimus, veniam magni quis!</p>
-          <a [routerLink]="['/blog/publicacion']" class="btn btn-blue rounded-0">Leer más &rarr;</a>
+      <li class="li my-paroller thumbnail-card" *ngFor="let post of posts">
+        <div class="card mb-4 shadow rounded-0 wrap">
+          <img class="card-img-top rounded-0" src="assets/img/4k.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">{{post.title}}</h2>
+            <p class="card-text">{{post.subtitle}}</p>
+            <a [routerLink]="['/blog/publicacion',post._id]" class="btn btn-blue rounded-0">Leer más &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Publicado {{post.publication_date}} por:
+            <a href="#">Demo</a>
+          </div>
         </div>
-        <div class="card-footer text-muted">
-          Publicado el 1 de Octubre, 2020 a las 00:00 PM por
-          <a href="#">Demo</a>
-        </div>
-      </div>
-
-      <!--Blog Post-->
-      <div class="card mb-4 shadow rounded-0">
-        <img class="card-img-top rounded-0" src="assets/img/blog-post-1.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h2 class="card-title">¡Por el derecho a la vida!</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
-            nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus
-            possimus, veniam magni quis!</p>
-          <a [routerLink]="['/blog/publicacion']" class="btn btn-blue rounded-0">Leer más &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-          Publicado el 1 de Septiembre, 2020 a las 00:00 PM por
-          <a href="#">Demo</a>
-        </div>
-      </div>
+      </li>
 
       <!--Paginación-->
       <ul class="pagination justify-content-center mb-4">
-        <li class="page-item">
-          <a class="page-link rounded-0" href="#">&larr; Anterior</a>
+        <li id="backListButton" class="page-item disabled">
+          <a class="page-link rounded-0 clickeable noselect" (click)="backListPage(true)">&larr; <span class="d-none d-lg-inline"> Anterior </span></a>
         </li>
-        <li class="page-item disabled">
-          <a class="page-link rounded-0" href="#">Siguiente &rarr;</a>
+        <li class="page-item clickeable noselect" *ngFor="let page of NumberofPagination | slice: viewListPage.start:viewListPage.end; let indexOf=index;" [class.active]="selectedPage === page" (click)="setActivePagination(page)">
+          <a class="page-link noselect" (click)="changePage(page, topblog)">{{page}}</a>
+        </li>
+        <li id="nextListButton" class="page-item">
+          <a class="page-link rounded-0 clickeable noselect" (click)="nextListPage(true)"> <span class="d-none d-lg-inline"> Siguiente </span> &rarr; </a>
         </li>
       </ul>
     </div>
@@ -81,7 +67,7 @@
     <div class="col-md-4">
       <!--Buscardor-->
       <div class="card bg-light my-4 shadow rounded-0">
-        <h5 class="card-header">Buscardor de publicaciones</h5>
+        <h5 class="card-header">Buscador de publicaciones</h5>
         <div class="card-body">
           <div class="input-group">
             <input type="text" class="form-control rounded-0" placeholder="Buscador">
@@ -92,22 +78,42 @@
         </div>
       </div>
 
-      <!--Avisos-->
-      <div class="card text-white bg-secondary border-secondary my-4 shadow rounded-0">
-        <h5 class="card-header">Avisos</h5>
-        <div class="card-body">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ab ad
-            repudiandae vero ducimus,
-            perspiciatis dolor mollitia quidem praesentium labore molestias recusandae cupiditate officia.</p>
-        </div>
-      </div>
       <!--Inicio de sesión-->
       <div class="card text-white bg-dark border-dark my-4 shadow rounded-0">
         <h5 class="card-header">Iniciar sesión</h5>
         <div class="card-body text-center">
-          <button type="button" class="btn btn-block btn-blue rounded-0">Ingresar (Usuario registrado)</button>
-          <button type="button" class="btn btn-block btn-danger rounded-0">Registrar (Nuevo usuario)</button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-block btn-blue rounded-0" data-toggle="modal" data-target="#exampleModal">
+            Ingresar (Usuario registrado)
+          </button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-block btn-danger rounded-0" data-toggle="modal" data-target="#exampleModal">
+            Registrar (Nuevo usuario)
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

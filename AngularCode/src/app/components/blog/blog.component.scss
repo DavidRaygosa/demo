@@ -1,0 +1,26 @@
+.li
+{
+	list-style: none;
+}
+
+.clickeable
+{
+	cursor: pointer;
+}
+
+.parallax
+{
+	margin-left: -150%;
+	margin-right: 150%;
+	transition: all 100ms;
+}
+
+.no-scale
+{
+	transform: scale(0.8) !important;
+}
+
+.header-text
+{
+	visibility: hidden;
+}

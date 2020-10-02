@@ -24,8 +24,12 @@
     "jquery": "^3.5.1",
     "jquery-ui-dist": "^1.12.1",
     "moment": "^2.27.0",
+    "ng-animate-scroll": "^7.1.0",
+    "parallax-js": "^3.1.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
+    "scrollreveal": "^4.0.7",
+    "simple-parallax-js": "^5.6.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

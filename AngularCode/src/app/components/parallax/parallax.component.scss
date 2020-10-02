@@ -1,0 +1,121 @@
+.general-background
+{
+	overflow: hidden;
+}
+
+.background
+{
+	margin-top: -10%;
+	margin-left: -10%;
+	width: 150%;
+	height: 150%;
+	background-image: url("../../../assets/img/parallax/space.jpg");
+	background-size: 100% 100%;
+	transform: scale(1.5);
+	box-shadow: 0px 0px 99999px black inset;
+}
+
+#scene-2
+{
+	margin-top: 18%;
+	margin-left: 5%;
+	width: 10%;
+	height: 20%;
+	opacity: 0.9;
+}
+
+#scene-2 > div
+{
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../../assets/img/parallax/planet.png");
+	background-size: 100% 100%;
+}
+
+#scene-3
+{
+	margin-top: 5%;
+	margin-left: 25%;
+	width: 15%;
+	height: 20%;
+	opacity: 0.9;
+}
+
+#scene-3 > div
+{
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../../assets/img/parallax/saturn.png");
+	background-size: 100% 100%;
+}
+
+#scene-4
+{
+	margin-top: 35%;
+	margin-left: 40%;
+	width: 10%;
+	height: 20%;
+	opacity: 0.9;
+}
+
+#scene-4 > div
+{
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../../assets/img/parallax/earth.png");
+	background-size: 100% 100%;
+}
+
+#scene-5
+{
+	margin-top: 28%;
+	margin-left: 80%;
+	width: 10%;
+	height: 20%;
+	opacity: 0.9;
+}
+
+#scene-5 > div
+{
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../../assets/img/parallax/mars.png");
+	background-size: 100% 100%;
+}
+
+#scene-6
+{
+	margin-top: 4%;
+	margin-left: 70%;
+	width: 10%;
+	height: 25%;
+	opacity: 0.9;
+}
+
+#scene-6 > div
+{
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../../assets/img/parallax/jupiter.png");
+	background-size: 100% 100%;
+}
+
+.texto
+{
+	margin-left: 35%;
+	margin-top: 20%;
+	font-size: 60px;
+	color: white;
+	opacity: 0.6;
+}
+
+.subtexto
+{
+	font-size: 20px !important;
+	text-align: center;
+}

@@ -12,6 +12,11 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    files: [
+      { pattern: "./node_modules/parallax-js/src/parallax.js", included: true, watched: false },
+      { pattern: "./node_modules/parallax-js/dist/parallax.min.js", included: true, watched: false },
+      { pattern: "./src/assets/js/parallax.js", included: true, watched: false }
+    ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
