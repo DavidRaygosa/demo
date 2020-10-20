@@ -25,4 +25,14 @@ export class ContactComponent implements OnInit {
 				delay: 100
 		});
 	}
+
+	onSubmit(form)
+	{
+		console.log(form.value);
+	}
+
+	onResetForm(form)
+	{
+		form.Reset();
+	}
 }

@@ -88,38 +88,97 @@
       <div class="card text-white bg-dark border-dark my-4 shadow rounded-0">
         <h5 class="card-header">Iniciar sesión</h5>
         <div class="card-body text-center">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-block btn-blue rounded-0" data-toggle="modal" data-target="#exampleModal">
-            Ingresar (Usuario registrado)
-          </button>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-block btn-danger rounded-0" data-toggle="modal" data-target="#exampleModal">
-            Registrar (Nuevo usuario)
-          </button>
+          <button type="button" data-toggle="modal" data-target="#inicioDeSesion"
+            class="btn btn-block btn-blue rounded-0">Ingresar (Inicio de sesión)</button>
+          <button type="button" data-toggle="modal" data-target="#registroUsuario"
+            class="btn btn-block btn-danger rounded-0">Registrar (Nuevo usuario)</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
+<!--Inicio de sesión (Modal)-->
+<div class="modal fade" id="inicioDeSesion" tabindex="-1" role="dialog" aria-labelledby="inicioDeSesionTituloCentral"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="inicioDeSesionTituloLargo">Inicio de sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quam urna, quis aliquet nisi mattis scelerisque. Vestibulum ac ex tempor leo aliquam sagittis vitae condimentum enim. Donec scelerisque malesuada velit, eu dictum risus consequat sed. Vestibulum pretium volutpat nunc vitae mattis. Ut porttitor diam sed leo lacinia interdum. Fusce ut porttitor quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum erat purus, molestie ut tortor vitae, vehicula convallis mauris. Proin efficitur tincidunt eros quis semper. Fusce rhoncus mi pharetra metus gravida venenatis. Mauris at consectetur dolor. In egestas tortor nec pellentesque suscipit. Nulla facilisi.
+        <form #loginform="ngForm" (ngSubmit)="onSubmitLogin(loginform)">
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" class="form-control rounded-0" id="emailUsuario" aria-describedby="emailAyuda"placeholder="Ingrese su E-mail aquí" name="email" ngModel required #email="ngModel">
+            <small id="emailAyuda" class="form-text text-muted">No compartiremos su e-mail con nadie.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control rounded-0" id="passwordUsuario" aria-describedby="passwordAyuda" placeholder="Ingrese su contraseña aquí" name="password" ngModel required #password="ngModel">
+            <small id="passwordAyuda" class="form-text text-muted">No compartiremos su contraseña con nadie.</small>
+          </div>
+
+          <button type="submit" class="btn btn-blue btn-block rounded-0" [disabled]="!loginform.valid">Iniciar sesión</button>
+
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Registo (Modal)-->
+<div class="modal fade" id="registroUsuario" tabindex="-1" role="dialog"
+  aria-labelledby="registroUsuarioTituloCentral" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registroUsuarioTituloLargo">Registro de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #registerform="ngForm" (ngSubmit)="onSubmitRegister(registerform)">
+
+          <div class="form-group">
+            <label for="name">Nombre(s):</label>
+            <input type="text" class="form-control rounded-0" id="name" placeholder="Ingrese su Nombre" name="name" ngModel required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="lastname">Apellido(s):</label>
+            <input type="text" class="form-control rounded-0" id="lastname" placeholder="Ingrese su Apellido" name="lastname" ngModel required #lastname="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" class="form-control rounded-0" id="emailRegisto" placeholder="Ingrese su E-mail aquí" name="email" ngModel required #email="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="text">Nickname:</label>
+            <input type="text" class="form-control rounded-0" id="nicknameRegisto" aria-describedby="nicknamelAyuda" placeholder="Ingrese su nickname de usuario aquí" name="nickname" ngModel required #nickname="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control rounded-0" id="contraseñaRegistro" placeholder="Ingrese su contraseña aquí" name="password" ngModel required #password="ngModel">
+          </div>
+
+          <button type="submit" class="btn btn-blue btn-block rounded-0" [disabled]="!registerform.valid">Registrar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger rounded-0" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

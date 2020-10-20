@@ -37,20 +37,18 @@
       <!--Formulario (Título)-->
       <h2>Formulario</h2>
       <!--Formulario (Apertura)-->
-      <form action="" method="post">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <!--Casilla de E-mail (Apertura)-->
         <div class="form-group">
           <label for="email">E-mail:</label>
-          <input type="email" class="form-control form-control-sm rounded-0" id="email" aria-describedby="emailHelp"
-            placeholder="Ingrese su E-mail aquí.">
+          <input type="email" class="form-control form-control-sm rounded-0" id="email" aria-describedby="emailHelp" placeholder="Ingrese su E-mail aquí." name="email" ngModel required #email="ngModel">
           <small id="emailHelp" class="form-text text-muted">Ingrese un E-mail valido.</small>
         </div>
         <!--Casilla de E-mail (Cierre)-->
         <!--Casilla de Asunto (Apertura)-->
         <div class="form-group">
           <label for="asunto">Asunto:</label>
-          <input type="text" class="form-control form-control-sm rounded-0" id="asunto" aria-describedby="asuntoHelp"
-            placeholder="Ingrese su asunto aquí">
+          <input type="text" class="form-control form-control-sm rounded-0" id="asunto" aria-describedby="asuntoHelp" placeholder="Ingrese su asunto aquí" name="affair" ngModel required #affair="ngModel">
           <small id="asuntoHelp" class="form-text text-muted">Ingrese el asunto de su mensaje de (Max.
             30 caracteres).</small>
         </div>
@@ -58,33 +56,22 @@
         <!--Casilla de Teléfono (Apertura)-->
         <div class="form-group">
           <label for="tel">Número telefónico:</label>
-          <input type="tel" class="form-control form-control-sm rounded-0" id="tel" aria-describedby="telHelp"
-            placeholder="Escriba su nro. telefónico aquí.">
+          <input type="number" class="form-control form-control-sm rounded-0" id="tel" aria-describedby="telHelp" placeholder="Escriba su nro. telefónico aquí." name="celNumber" ngModel required #celNumber="ngModel">
           <small id="telHelp" class="form-text text-muted">Ingrese su número telefónico aquí (Solo
             números validos).</small>
         </div>
         <!--Casilla de Teléfono (Cierre)-->
-        <!--Casilla de rázon de contacto (Apertura)-->
-        <div class="form-group">
-          <label for="razon">Razón de contacto:</label>
-          <input type="text" class="form-control form-control-sm rounded-0" id="razon" aria-describedby="razonHelp"
-            placeholder="Ingrese el motivo de su mensaje aquí.">
-          <small id="razonHelp" class="form-text text-muted">Ingrese la razon de su mensaje aquí (Max.
-            30 caracteres).</small>
-        </div>
-        <!--Casilla de rázon de contacto (Cierre)-->
         <!--Textarea (Apertura)-->
         <div class="form-group">
           <label for="mensaje">Mensaje:</label>
-          <textarea class="form-control form-control-sm rounded-0" id="mensaje" rows="6" aria-describedby="mensajeHelp"
-            placeholder="Ingrese su mensaje aquí."></textarea>
+          <textarea class="form-control form-control-sm rounded-0" id="mensaje" rows="6" aria-describedby="mensajeHelp" placeholder="Ingrese su mensaje aquí." name="message" ngModel required #message="ngModel"></textarea>
           <small id="mensajeHelp" class="form-text text-muted">Escriba su mensaje (Max.
             500 caracteres).</small>
         </div>
         <!--Textarea (Apertura)-->
         <!--Botones Enviar/Borrar (Apertura)-->
-        <button type="submit" class="btn btn-block btn-lg btn-blue rounded-0">Enviar</button>
-        <button type="reset" class="btn btn-block btn-lg btn-blue rounded-0">Borrar</button>
+        <button type="submit" class="btn btn-block btn-lg btn-blue rounded-0" [disabled]="!form.valid">Enviar</button>
+        <button type="reset" class="btn btn-block btn-lg btn-blue rounded-0" clicK="onResetForm(form)">Borrar</button>
         <!--Botones Enviar/Borrar (Cierre)-->
       </form>
       <!--Formulario (Cierre)-->
