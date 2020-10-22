@@ -9,7 +9,9 @@ var ProjectSchema = Schema(
 	lastname: String,
 	email: String,
 	password: String,
-	image: String
+	image: String,
+	superuser: String,
+	nickname: String
 });
 
 module.exports = mongoose.model('users', ProjectSchema);

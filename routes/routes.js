@@ -7,7 +7,6 @@ var express = require('express');
 var GeneralController = require('../controllers/general.controller');
 var PostController = require('../controllers/posts.controller');
 var UserController = require('../controllers/users.controller');
-var SuperuserController = require('../controllers/superusers.controller');
 
 var router = express.Router();
 
@@ -29,11 +28,9 @@ var multipartMiddleWare = multipart({uploadDir: './uploads'});
 		router.get('/get-post/:id?', PostController.getDocument);
 
 	// Users
-		router.post('/new-user', UserController.createDocument);
+		router.post('/register-user', UserController.registerUser);
 		router.get('/get-users', UserController.getDocuments);
-
-	// Users
-		router.post('/new-superuser', SuperuserController.createDocument);
-		router.get('/get-superusers', SuperuserController.getDocuments)
+		router.get('/check-email/:email?', UserController.checkEmail);
+		router.get('/check-nickname/:nickname?', UserController.checkNickname);
 
 module.exports = router;
