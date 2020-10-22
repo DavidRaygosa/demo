@@ -1,9 +1,14 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { PostsService } from '../../services/posts.service';
-import { GeneralService } from '../../services/general.service';
-import {Location} from '@angular/common';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostModel } from '../../models/post.model';
+//--------------------- SERVICES -----------------------------//
+import { PostsService } from '../../services/posts.service';
+import { GeneralService } from '../../services/general.service';
+import { UserService } from '../../services/user.service';
+//--------------------- MODELS -------------------------------//
+import { User } from '../../models/user.model';
+//--------------------- LIBRARIES ---------------------------//
 import { NgAnimateScrollService } from 'ng-animate-scroll';
 import simpleParallax from 'simple-parallax-js';
 import ScrollReveal from 'scrollreveal'
@@ -28,6 +33,18 @@ export class BlogComponent implements OnInit {
 	public innerWidth: any;
 	public responsive:boolean;
 	public loading:boolean;
+	public loginError:boolean = false;
+	public loginErrorMessage:string;
+	public registerError:boolean = false;
+	public registerErrorMessage:string;
+	public User:User;
+	public closedModals:boolean = false;
+	//----------- SESSION --------------
+	public _SESSION:User;
+	public logged:boolean = false;
+	//----------- DOM --------------
+	@ViewChild('loginModal') loginModal: ElementRef;
+	@ViewChild('registerModal') registerModal: ElementRef;
 
 	constructor
 	(
@@ -36,7 +53,8 @@ export class BlogComponent implements OnInit {
 		private _route:ActivatedRoute,
 		private _postService:PostsService, 
 		private _generalService:GeneralService, 
-		private _animateScrollService: NgAnimateScrollService
+		private _animateScrollService: NgAnimateScrollService,
+		private _userService:UserService
 	) { }
 
 	ngOnInit(): void 
@@ -92,6 +110,8 @@ export class BlogComponent implements OnInit {
 					}	
 				});
 			});
+		// CHECK IF SESSION IS LOGGED
+		this.getSession();
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -101,6 +121,23 @@ export class BlogComponent implements OnInit {
   		if(this.innerWidth <= 768) this.responsive = true;
 	}
 
+	//---------------------------- SESSION ---------------------------------------//
+	getSession()
+	{
+		this._SESSION = JSON.parse(localStorage.getItem('_SESSION'));
+		if(this._SESSION == null) this.logged = false;
+		else this.logged = true;
+		if(this.logged) this.closeModals();
+	}
+
+	closeSESSION()
+	{
+		this.closedModals = false;
+		localStorage.clear();
+		this.logged = false;
+	}
+
+	//---------------------------- POSTS -----------------------------------------//
 	getPosts()
 	{
 		this._postService.getPostRange(this.rangePosts.skip)
@@ -204,11 +241,85 @@ export class BlogComponent implements OnInit {
    	--------------------------------------------------------------------------------------------------*/
    	onSubmitLogin(form)
    	{
-   		console.log(form.value);
+   		this.loginError = false;
+   		this.loginErrorMessage = "";
+   		this._userService.checkEmail(form.value.email).subscribe(
+   			response =>
+   			{
+   				if(response.message == 'No Hay Proyectos Para Mostrar') 
+   				{
+   					this.loginError = true; 
+   					this.loginErrorMessage = "Email no registrado";
+   					return false;
+   				}
+   				if(response.documents[0].password != form.value.password){this.loginError = true;this.loginErrorMessage = "Contraseña Incorrecta";return false;}
+   				this._SESSION = response.documents[0];
+   				localStorage.setItem('_SESSION', JSON.stringify(this._SESSION));
+   				this.getSession();
+   			});
    	}
 
    	onSubmitRegister(form)
    	{
-   		console.log(form.value);
+   		this.registerError = false;
+   		this.registerErrorMessage = "";
+   		this._userService.checkEmail(form.value.email).subscribe(
+   			response =>
+   			{
+   				if(response.message != 'No Hay Proyectos Para Mostrar') 
+   				{
+   					this.registerError = true; 
+   					this.registerErrorMessage = "Email registrado, por favor intente con otro email";
+   					return false;
+   				}
+				this._userService.checkNickname(form.value.nickname).subscribe(
+				response =>
+				{
+					if(response.message != 'No Hay Proyectos Para Mostrar') 
+					{
+						this.registerError = true; 
+						this.registerErrorMessage = "Nickname registrado, por favor intente con otro nickname";
+						return false;
+					}
+					this.constructorUser();
+					this.registerUser(form);
+				});
+   			});
+   	}
+
+   	constructorUser()
+   	{
+   		this.User = new User('','','','','','','')
+   	}
+
+   	registerUser(form:any)
+   	{
+   		this.User.name = form.value.name;
+   		this.User.lastname = form.value.lastname;
+   		this.User.email = form.value.email;
+   		this.User.password = form.value.password;
+   		this.User.image = 'Null';
+   		this.User.superuser = 'no';
+   		this.User.nickname = form.value.nickname;
+   		this._userService.registerUser(this.User).subscribe(
+   			response => 
+   			{
+   				this._SESSION = response.message;
+   				localStorage.setItem('_SESSION', JSON.stringify(this._SESSION));
+   				this.getSession();
+   			});
+   	}
+
+   	closeModals()
+   	{
+   		setTimeout(()=>
+   		{
+   			this.loginModal.nativeElement.click();
+			this.registerModal.nativeElement.click();
+   		},10);
+   		setTimeout(()=>
+   		{
+   			this.closedModals = true;
+   		},300);
    	}
 }
