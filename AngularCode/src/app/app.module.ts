@@ -15,6 +15,12 @@ import { TermsComponent } from './components/terms/terms.component';
 import { BlogTemplateComponent } from './components/blog/blog-template/blog-template.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ParallaxComponent } from './components/parallax/parallax.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ProfileComponent } from './components/admin/profile/profile.component';
+import { AdminsComponent } from './components/admin/admins/admins.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { PublicationsComponent } from './components/admin/publications/publications.component';
+import { InfoComponent } from './components/admin/info/info.component';
 
 
 @NgModule({
@@ -28,7 +34,13 @@ import { ParallaxComponent } from './components/parallax/parallax.component';
     TermsComponent,
     BlogTemplateComponent,
     NotfoundComponent,
-    ParallaxComponent
+    ParallaxComponent,
+    AdminComponent,
+    ProfileComponent,
+    AdminsComponent,
+    UsersComponent,
+    PublicationsComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

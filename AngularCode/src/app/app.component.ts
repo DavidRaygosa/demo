@@ -4,6 +4,8 @@ import * as moment from 'moment';
 import 'moment/locale/es';
 moment.locale('es');
 declare var $ : any; // Declare $ to Javascript
+//--------------------- MODELS -------------------------------//
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,10 @@ export class AppComponent {
 	title = 'frontend';
 	public currentRoute : string; // Current Route
 	public parallax:boolean;
+	//SESSION
+	public _SESSION:User;
+	public admin:boolean;
+	public superadmin:boolean;
 
 	constructor(private router: Router)
 	{
@@ -29,13 +35,50 @@ export class AppComponent {
 		// Set Active NavBar Item
 		this.setActiveNav();
 		this.parallax = false;
+		// CHECK IF USER IS ADMIN
+		this.admin = false;
+		this.superadmin = false;
+		this.isAdmin();
+	}
+
+	isAdmin()
+	{
+		this._SESSION = JSON.parse(localStorage.getItem('_SESSION'));
+		if(this._SESSION != null)
+		{
+			if(this._SESSION.usertype=='admin')
+			{
+				this.admin = true;this.router.navigateByUrl('/');
+			}
+			if(this._SESSION.usertype=='superadmin')
+			{
+				this.superadmin = true;
+				this.admin = true;this.router.navigateByUrl('/');
+			}
+		}
 	}
 
 	onActivate(event) 
 	{
 		// Call Functions When User Change Component
-		this.removeActiveNav();
-		this.setActiveNav();
+		if(this._SESSION == null)
+		{
+			this.removeActiveNav();
+			this.setActiveNav();
+		}
+		else
+		{
+			if(this._SESSION.usertype == 'admin' || this._SESSION.usertype == 'superadmin')
+			{
+				this.removeActiveNavAdmin();
+				this.setActiveNavAdmin();
+			}
+			else
+			{
+				this.removeActiveNav();
+				this.setActiveNav();
+			}
+		}
 		this.scrollToTop();
 	}
 
@@ -58,12 +101,6 @@ export class AppComponent {
 		document.getElementById("contact-nav").classList.remove("active");
 	}
 
-	scrollToTop()
-	{
-		// Scroll to top without animation
-		window.scroll(0,0);
-	}
-
 	closeResponsiveNav()
 	{
 		// Close Responsive Navbar When User Click On Any Item 
@@ -72,5 +109,62 @@ export class AppComponent {
 		closeResponsiveNav.setAttribute('aria-expanded', 'false');
 		closeResponsiveNav.classList.add("collapsed");
 		navbarNav.classList.remove('show');
+	}
+
+	scrollToTop()
+	{
+		// Scroll to top without animation
+		setTimeout(()=>
+		{
+			window.scroll(0,0);
+		},100);
+	}
+
+	//---------------------------------------------------------------------------------------------------
+	//--------------------------------------- ADMINS ----------------------------------------------------
+	//---------------------------------------------------------------------------------------------------
+
+	setActiveNavAdmin()
+	{
+		// Get Current URL
+		this.currentRoute = this.router.url.substring(1,6);
+		// If CurrenRoute match with any route, set classlist "Active"; else remove class "active" to all items
+		if(this.currentRoute == "") document.getElementById("admin-nav-profile").classList.add("active");
+		else if(this.currentRoute == "admin") document.getElementById("admin-nav-admins").classList.add("active");
+		else if(this.currentRoute == "usuar") document.getElementById("admin-nav-users").classList.add("active");
+		else if(this.currentRoute == "publi") document.getElementById("admin-nav-publications").classList.add("active");
+		else if(this.currentRoute == "infor") document.getElementById("admin-nav-info").classList.add("active");
+	}
+
+	removeActiveNavAdmin()
+	{
+		// Remove class "active" to all items
+		document.getElementById("admin-nav-profile").classList.remove("active");
+		if(this.superadmin)
+		{
+			document.getElementById("admin-nav-admins").classList.remove("active");
+			document.getElementById("admin-nav-users").classList.remove("active");
+		}
+		document.getElementById("admin-nav-publications").classList.remove("active");
+	}
+
+	closeResponsiveNavAdmin()
+	{
+		// Close Responsive Navbar When User Click On Any Item 
+		let closeResponsiveNav = document.getElementById("navResponsiveButtonAdmin");
+		let navbarNav = document.getElementById("navbarNavAdmin");
+		closeResponsiveNav.setAttribute('aria-expanded', 'false');
+		closeResponsiveNav.classList.add("collapsed");
+		navbarNav.classList.remove('show');
+	}
+
+	closeAdminPanel()
+	{
+		localStorage.clear();
+		this.router.navigateByUrl('/');
+		setTimeout(()=>
+		{
+			window.location.reload();
+		},1)
 	}
 }

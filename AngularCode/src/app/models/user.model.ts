@@ -7,7 +7,7 @@ export class User
 		public email: string,
 		public password: string,
 		public image: string,
-		public superuser: string,
+		public usertype: string,
 		public nickname: string
 	)
 	{

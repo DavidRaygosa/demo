@@ -125,6 +125,7 @@ export class BlogComponent implements OnInit {
 	getSession()
 	{
 		this._SESSION = JSON.parse(localStorage.getItem('_SESSION'));
+		if(this._SESSION != null ) if(this._SESSION.usertype=='admin' || this._SESSION.usertype == 'superadmin') window.location.reload();
 		if(this._SESSION == null) this.logged = false;
 		else this.logged = true;
 		if(this.logged) this.closeModals();
@@ -299,7 +300,7 @@ export class BlogComponent implements OnInit {
    		this.User.email = form.value.email;
    		this.User.password = form.value.password;
    		this.User.image = 'Null';
-   		this.User.superuser = 'no';
+   		this.User.usertype = 'standard';
    		this.User.nickname = form.value.nickname;
    		this._userService.registerUser(this.User).subscribe(
    			response => 
