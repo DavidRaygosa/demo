@@ -7,6 +7,7 @@ app.set('port', process.env.PORT || port)
 
 mongoose.Promise = global.Promise;
 
+//THIS LINE TO CONNECT ATLAS DB
 mongoose.connect('mongodb+srv://davidr97:Azullindo55@cluster0.ulby7.mongodb.net/projectdb?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 		.then
 		(
@@ -22,8 +23,8 @@ mongoose.connect('mongodb+srv://davidr97:Azullindo55@cluster0.ulby7.mongodb.net/
 
 		.catch(error => console.log(error));
 
-/* THIS LINE TO CONNECT DB
-mongoose.connect('mongodb://localhost:27017/clinic', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+/*THIS LINE TO CONNECT LOCAL DB
+mongoose.connect('mongodb://localhost:27017/projectdb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 		.then
 		(
 			() =>
@@ -38,11 +39,10 @@ mongoose.connect('mongodb://localhost:27017/clinic', { useNewUrlParser: true, us
 
 		.catch(error => console.log(error));
 */
+
 /* THIS LINE TO CONNECT WITHOUT DB
 app.listen(app.get('port'), () => 
 {
 		console.log("Servidor Corriendo Correctamente En Puerto: "+app.get('port'));
 });
-
-// THIS LINE TO CONNECT TO SERVER
 */

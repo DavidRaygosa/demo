@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var ProjectSchema = Schema(
 {
-	lenght:Number
+	lenght:Number,
+	adminslenght: Number
 });
 
 module.exports = mongoose.model('general', ProjectSchema);

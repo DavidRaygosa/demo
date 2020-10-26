@@ -10,7 +10,7 @@ var ProjectSchema = Schema(
 	email: String,
 	password: String,
 	image: String,
-	superuser: String,
+	usertype: String,
 	nickname: String
 });
 

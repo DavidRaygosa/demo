@@ -14,7 +14,7 @@ var controller_user =
 		project.email = params.email;
 		project.password = params.password;
 		project.image = params.image;
-		project.superuser = params.superuser;
+		project.usertype = params.usertype;
 		project.nickname = params.nickname;
 		
 		project.save((error,DocumentStored) => 
@@ -55,7 +55,19 @@ var controller_user =
 			if(documents.length==0) return res.status(200).send({message: "No Hay Proyectos Para Mostrar"});
 			return res.status(200).send({documents});
 		});
-	}
+	},
+
+	updateUser: (req, res) =>
+	{
+		var projectID = req.params.id;
+		var update = req.body;
+		user.findByIdAndUpdate(projectID, update, {new:true} ,(error, projectUpdated) =>
+		{
+			if(error) return res.status(500).send({message: 'Error Al Actualizar'});
+			if(!projectUpdated) return res.status(404).send({message: 'No Existe El Proyecto'});
+			return res.status(200).send({project: projectUpdated});
+		});
+	},
 }
 
 module.exports = controller_user;

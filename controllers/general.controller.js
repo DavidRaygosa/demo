@@ -26,6 +26,18 @@ var controller_general =
 			if(documents.length==0) return res.status(200).send({message: "No Hay Proyectos Para Mostrar"});
 			return res.status(200).send({documents});
 		});
+	},
+
+	updateGeneral: (req, res) =>
+	{
+		var projectID = req.params.id;
+		var update = req.body;
+		general.findByIdAndUpdate(projectID, update, {new:true} ,(error, projectUpdated) =>
+		{
+			if(error) return res.status(500).send({message: 'Error Al Actualizar'});
+			if(!projectUpdated) return res.status(404).send({message: 'No Existe El Proyecto'});
+			return res.status(200).send({project: projectUpdated});
+		});
 	}
 }
 
