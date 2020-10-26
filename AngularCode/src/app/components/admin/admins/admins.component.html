@@ -1,186 +1,178 @@
 <h1 class="font-weight-bold text-center text-lg-left pt-4">Administradores</h1>
 <hr>
-<div class="row">
-  <div class="col-12 col-sm-6 col-lg-3">
-    <button type="button" class="btn btn-blue btn-block rounded-0" data-toggle="modal" data-target="#crearAdmin"><i
-        class="fas fa-user-tie"></i>&nbsp;Crear
-      administrador</button>
+<div class="h-100 mt-5 d-flex justify-content-center align-items-center" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
   </div>
 </div>
-
-<div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="table-responsive">
-      <table class="table">
-        <table class="table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre(s)</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Email</th>
-              <th scope="col">Nickname</th>
-              <th scope="col">Editar</th>
-              <th scope="col">Degradar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">9</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">10</th>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td>Null</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                  data-target="#editarAdmin"><i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                  data-target="#degradarAdmin"><i class="fas fa-arrow-down"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </table>
+<div *ngIf="!loading">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <button type="button" class="btn btn-blue btn-block rounded-0" data-toggle="modal" data-target="#crearAdmin"><i
+          class="fas fa-user-tie"></i>&nbsp;Crear
+        administrador</button>
     </div>
   </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end pt-4">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Siguiente</a>
-      </li>
-    </ul>
-  </nav>
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="table-responsive">
+        <table class="table">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre(s)</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nickname</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Degradar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let admin of admins; let indexOf=index">
+                <th scope="row">{{indexOf+1}}</th>
+                <td>{{admin.name}}</td>
+                <td>{{admin.lastname}}</td>
+                <td>{{admin.email}}</td>
+                <td>{{admin.nickname}}</td>
+                <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
+                    data-target="#editarAdmin" (click)="editAdmin(admin._id)"><i class="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
+                <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
+                    data-target="#degradarAdmin" (click)="getDegreeAdmin(admin._id)"><i class="fas fa-arrow-down"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </table>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <!--Paginación-->
+        <ul class="pagination justify-content-center mb-4">
+          <li id="backListButton" class="page-item">
+            <a class="page-link rounded-0 clickeable noselect" (click)="backListPage(true)">&larr; <span class="d-none d-lg-inline"> Anterior </span></a>
+          </li>
+          <li class="page-item clickeable noselect" *ngFor="let page of NumberofPagination | slice: viewListPage.start:viewListPage.end; let indexOf=index;" [class.active]="selectedPage == page" (click)="setActivePagination(page)">
+            <a class="page-link noselect" (click)="changePage(page)">{{page}}</a>
+          </li>
+          <li id="nextListButton" class="page-item">
+            <a class="page-link rounded-0 clickeable noselect" (click)="nextListPage(true)"> <span class="d-none d-lg-inline"> Siguiente </span> &rarr; </a>
+          </li>
+        </ul>
+    </nav>
+  </div>
+
+  <!--------------------------------------------------------------------------------------------------------
+    ----------------------------------------- MODALS -------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------->
+    <!-- Modal (Crear administrador)-->
+  <div class="modal fade" id="crearAdmin" tabindex="-1" role="dialog" aria-labelledby="crearAdminCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="crearAdminLongTitle">Crear administrador</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #registerform="ngForm" (ngSubmit)="onSubmitRegister(registerform)">
+            <div class="form-group">
+              <label for="text">Nombres(s):</label>
+              <input type="text" class="form-control rounded-0" name="registerName" ngModel id="nombreAdminRegisto" required placeholder="Ingrese el (los) nombre(s) del administrador aquí.">
+            </div>
+            <div class="form-group">
+              <label for="text">Apellidos:</label>
+              <input type="text" class="form-control rounded-0" name="registerLastname" ngModel id="apellidosAdminRegisto" placeholder="Ingrese los apellidos del administrador aquí." required>
+            </div>
+            <div class="form-group">
+              <label for="text">Nickname:</label>
+              <input type="text" class="form-control rounded-0" name="registerNickname" ngModel id="nicknameAdminRegisto" placeholder="Ingrese el nickname del administrador aquí." required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" class="form-control rounded-0" name="registerEmail" ngModel id="emailAdminRegisto" placeholder="Ingrese el e-mail del administrador aquí." required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" class="form-control rounded-0" name="registerPassword" ngModel id="contraseniaAdminRegistro" placeholder="Ingrese la contraseña del administrador aquí." required>
+            </div>
+            <!-- ALERT IF FORM HAS ERROR -->
+            <div class="alert alert-danger" role="alert" *ngIf="registerError">
+              {{registerErrorMessage}}
+            </div>
+            <button type="submit" class="btn btn-success btn-block rounded-0" [disabled]="!registerform.valid">Registrar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal" #registerModal>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (Editar administrador)-->
+  <div class="modal fade" id="editarAdmin" tabindex="-1" role="dialog" aria-labelledby="editarAdminCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarAdminLongTitle">Editar administrador</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editform="ngForm">
+            <div class="form-group">
+              <label for="text">Nombres(s):</label>
+              <input type="text" class="form-control rounded-0" name="editName" ngModel #nombreAdminEdit required placeholder="Edite el (los) nombre(s) del administrador aquí.">
+            </div>
+            <div class="form-group">
+              <label for="text">Apellidos:</label>
+              <input type="text" class="form-control rounded-0" name="editLatname" ngModel #apellidosAdminEdit placeholder="Edite los apellidos del administrador aquí." required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" class="form-control rounded-0" name="editPassword" ngModel #contraseniaAdminEdit placeholder="Edite la contraseña del administrador aquí." required>
+            </div>
+            <button type="submit" class="btn btn-success btn-block rounded-0" (click)="updateAdmin()">Actualizar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal" #editModal>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (Degradar administrador)-->
+  <div class="modal fade" id="degradarAdmin" tabindex="-1" role="dialog" aria-labelledby="degradarAdminCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="degradarAdminLongTitle">Degradar administrador</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
+            hic magni animi, quos
+            fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
+          <form action="" method="">
+            <button type="submit" class="btn btn-warning btn-block rounded-0" (click)="degreeAdmin()">Degradar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal" #closeModal>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

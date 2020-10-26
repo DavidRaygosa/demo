@@ -1,53 +1,61 @@
 <h1 class="font-weight-bold text-center text-lg-left pt-4">Perfil</h1>
 <hr>
-<div class="row">
-  <div class="col-12 col-sm-6 col-lg-3">
-    <button type="button" class="btn btn-blue btn-block rounded-0"><i class="fas fa-user-edit"></i>&nbsp;Editar
-      perfil</button>
-  </div>
-
-  <div class="col-12 col-sm-6 col-lg-3">
-    <button class="btn btn-danger btn-block rounded-0"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar
-      sesión</button>
+<div class="h-100 mt-5 d-flex justify-content-center align-items-center" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
   </div>
 </div>
-<hr>
-<form>
-  <div class="form-group row">
-    <label for="adminNombre" class="col-sm-4 col-lg-2 col-form-label">Nombres(s):</label>
-    <div class="col-sm-8 col-lg-10">
-      <input type="text" class="form-control rounded-0" id="adminNombre" placeholder="Nombre(s)">
+<div *ngIf="!loading">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <button type="button" class="btn btn-blue btn-block rounded-0" [disabled]="!edit" (click)="enableEdit()"><i class="fas fa-user-edit"></i>&nbsp;Editar
+        perfil</button>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="adminApellidos" class="col-sm-4 col-lg-2 col-form-label">Apellidos:</label>
-    <div class="col-sm-8 col-lg-10">
-      <input type="text" class="form-control rounded-0" id="adminApellidos" placeholder="Apellidos">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="adminNickname" class="col-sm-4 col-lg-2 col-form-label">Nickname:</label>
-    <div class="col-sm-8 col-lg-10">
-      <input type="text" class="form-control rounded-0" id="adminNickname" placeholder="Nickname">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="adminEmail" class="col-sm-4 col-lg-2 col-form-label">E-mail:</label>
-    <div class="col-sm-8  col-lg-10">
-      <input type="email" class="form-control rounded-0" id="adminEmail" placeholder="E-mail">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="adminPassword" class="col-sm-4 col-lg-2 col-form-label">Contraseña:</label>
-    <div class="col-sm-8 col-lg-10">
-      <input type="password" class="form-control rounded-0" id="adminPassword" placeholder="Contraseña">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <button class="btn btn-danger btn-block rounded-0" (click)="closeAdminPanel()"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar
+        sesión</button>
     </div>
   </div>
   <hr>
-  <div class="form-group row">
-    <div class="col-12 col-sm-6 col-lg-3">
-      <button type="submit" class="btn btn-success btn-block rounded-0"><i class="fas fa-save"></i>&nbsp;Guardar
-        cambios</button>
+  <form #editform="ngForm">
+    <div class="form-group row">
+      <label for="nombreAdmin" class="col-sm-4 col-lg-2 col-form-label">Nombres(s):</label>
+      <div class="col-sm-8 col-lg-10">
+        <input type="text" class="form-control rounded-0" name="editName" ngModel #nombreAdminEdit placeholder="Nombre(s)" [readonly]="edit" required>
+      </div>
     </div>
-  </div>
-</form>
+    <div class="form-group row">
+      <label for="apellidosAdmin" class="col-sm-4 col-lg-2 col-form-label">Apellidos:</label>
+      <div class="col-sm-8 col-lg-10">
+        <input type="text" class="form-control rounded-0" name="editLastname" ngModel #apellidosAdminEdit placeholder="Apellidos" [readonly]="edit" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="nicknameAdmin" class="col-sm-4 col-lg-2 col-form-label">Nickname:</label>
+      <div class="col-sm-8 col-lg-10">
+        <input type="text" class="form-control rounded-0" name="editNickname" ngModel #nicknameAdminEdit placeholder="Nickname" [readonly]="true">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="emailAdmin" class="col-sm-4 col-lg-2 col-form-label">E-mail:</label>
+      <div class="col-sm-8  col-lg-10">
+        <input type="email" class="form-control rounded-0" name="editEmail" ngModel #emailAdminEdit placeholder="E-mail" [readonly]="true">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="contraseniaAdmin" class="col-sm-4 col-lg-2 col-form-label">Contraseña:</label>
+      <div class="col-sm-8 col-lg-10">
+        <input type="password" class="form-control rounded-0" name="editPassword" ngModel #contraseniaAdminEdit placeholder="Contraseña" [readonly]="edit" required>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group row">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div *ngIf="!edit">
+          <button type="submit" class="btn btn-danger btn-block rounded-0" (click)="cancel()"><i class="far fa-window-close"></i>&nbsp;Cancelar</button>
+          <button type="submit" class="btn btn-success btn-block rounded-0" (click)="saveChanges()" [disabled]="!editform.valid"><i class="fas fa-save"></i>&nbsp;Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

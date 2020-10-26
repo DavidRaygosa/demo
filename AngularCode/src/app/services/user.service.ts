@@ -34,4 +34,11 @@ export class UserService {
 		let headers = new HttpHeaders().set('Content-Type','application/json');
 		return this._http.post(this.url+'register-user',params, {headers: headers});
 	}
+
+	updateUser = (user):Observable<any> =>
+	{
+		let params = JSON.stringify(user);
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+		return this._http.put(this.url+'update-user/'+user._id, params, {headers: headers});
+	}
 }

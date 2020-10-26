@@ -6,7 +6,7 @@ import { Global } from './global';
 @Injectable({
   providedIn: 'root'
 })
-export class GeneralService {
+export class AdminService {
 
 	public url:string;
 
@@ -15,16 +15,21 @@ export class GeneralService {
 		this.url = Global.url;
 	}
 
-	getGeneral = ():Observable<any> =>
+	getAdmin()
 	{
 		let headers = new HttpHeaders().set('Content-Type','application/json');
-		return this._http.get(this.url+'get-general', {headers: headers});
+		return this._http.get(this.url+'get-admins', {headers: headers});
 	}
 
-	updateGeneral = (settings):Observable<any> =>
+	getAdminsRange(skip:number)
 	{
-		let params = JSON.stringify(settings);
+		let headers = new HttpHeaders().set('Content-Type','application/json');
+		return this._http.get(this.url+'get-adminsrange/'+skip, {headers: headers});
+	}
+
+	getAdminByID = (id):Observable<any> =>
+	{
 		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-		return this._http.put(this.url+'update-general/'+settings._id, params, {headers: headers});
+		return this._http.get(this.url+'get-admin/'+id, {headers:headers});
 	}
 }

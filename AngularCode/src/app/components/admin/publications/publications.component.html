@@ -231,64 +231,183 @@
 </nav>
 </div>
 
-<!-- Modal (Crear publicación)-->
-<div class="modal fade" id="crearPublicacion" tabindex="-1" role="dialog"
-aria-labelledby="crearPublicacionCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="crearPublicacionLongTitle">Crear publicación</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+<!--------------------------------------------------------------------------------------------------------
+  ----------------------------------------- MODALS -------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------->
+
+  <!-- Modal (Crear publicación)-->
+<div class="modal fade bd-example-modal-lg" id="crearPublicacion" data-backdrop="static" data-keyboard="false"
+  tabindex="-1" role="dialog" aria-labelledby="crearPublicacionCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearPublicacionLongTitle">Crear publicación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+
+          <div class="form-group">
+            <label for="resumenPublicacion">Tílulo:</label>
+            <input type="text" class="form-control rounded-0" id="resumenPublicacion"
+              placeholder="Escriba el título de la publicación aquí." required>
+          </div>
+
+          <div class="form-group">
+            <label for="portadaPublicacion">Portada:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input rounded-0" id="portadaPublicacion" lang="es" required>
+              <label class="custom-file-label rounded-0" for="portadaPublicacion">Seleccionar imágen de
+                portada.</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resumenPublicacion">Resumen:</label>
+            <textarea class="form-control rounded-0" id="resumenPublicacion" rows="2"
+              placeholder="Escriba el resumen la publicación aquí." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="cuerpoPublicacion">Cuerpo:</label>
+            <textarea class="form-control rounded-0" id="cuerpoPublicacion" rows="4"
+              placeholder="Escriba el cuerpo la publicación aquí." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="imagenPublicacion">Imágenes:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input rounded-0" id="imagenPublicacion" lang="es">
+              <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciones una imágen.</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="transmisionPublicacion">Transmisión:</label>
+            <input type="text" class="form-control rounded-0" id="transmisionPublicacion"
+              placeholder="Escriba la URL de la trasmisión aquí.">
+          </div>
+
+          <button class="btn btn-blue btn-block rounded-0">Añadir imágen</button>
+          <button class="btn btn-blue btn-block rounded-0">Añadir transmisión (<i class="fab fa-facebook-f"></i>
+            Live)</button>
+
+          <button class="btn btn-danger btn-block rounded-0">Borrar imágen</button>
+          <button class="btn btn-danger btn-block rounded-0">Borrar transmisión (<i class="fab fa-facebook-f"></i>
+            Live)</button>
+
+          <button type="submit" class="btn btn-success btn-block rounded-0">Crear publicación</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- Modal (Editar publicacion)-->
-<div class="modal fade" id="editarPublicacion" tabindex="-1" role="dialog"
-aria-labelledby="editarPublicacionCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="editarPublicacionLongTitle">Editar publicación</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+<div class="modal fade bd-example-modal-lg" id="editarPublicacion" data-backdrop="static" data-keyboard="false"
+  tabindex="-1" role="dialog" aria-labelledby="editarPublicacionCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarPublicacionLongTitle">Editar publicación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="">
+
+          <div class="form-group">
+            <label for="resumenPublicacionEdit">Tílulo:</label>
+            <input type="text" class="form-control rounded-0" id="resumenPublicacionEdit"
+              placeholder="Escriba el título de la publicación aquí." required>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaPublicacionEdit">Fecha:</label>
+            <input type="datetime-local" class="form-control rounded-0" id="fechaPublicacionEdit" name="fecha-publicacion-edit"
+              value="2020-11-01T00:00" min="2020-11-01T00:00" max="2030-12-31T00:00" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="portadaPublicacionEdit">Portada:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input rounded-0" id="portadaPublicacionEdit" lang="es" required>
+              <label class="custom-file-label rounded-0" for="portadaPublicacion">Seleccionar imágen de
+                portada.</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resumenPublicacionEditar">Resumen:</label>
+            <textarea class="form-control rounded-0" id="resumenPublicacionEdit" rows="2"
+              placeholder="Escriba el resumen la publicación aquí." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="cuerpoPublicacionEditar">Cuerpo:</label>
+            <textarea class="form-control rounded-0" id="cuerpoPublicacionEdit" rows="4"
+              placeholder="Escriba el cuerpo la publicación aquí." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="imagenPublicacionEdit">Imágenes:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input rounded-0" id="imagenPublicacionEdit" lang="es">
+              <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciones una imágen.</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="transmisionPublicacionEdit">Transmisión:</label>
+            <input type="text" class="form-control rounded-0" id="transmisionPublicacionEdit"
+              placeholder="Escriba la URL de la trasmisión aquí.">
+          </div>
+
+          <button class="btn btn-blue btn-block rounded-0">Añadir imágen</button>
+          <button class="btn btn-blue btn-block rounded-0">Añadir transmisión (<i class="fab fa-facebook-f"></i>
+            Live)</button>
+          <button class="btn btn-danger btn-block rounded-0">Borrar imágen</button>
+          <button class="btn btn-danger btn-block rounded-0">Borrar transmisión (<i class="fab fa-facebook-f"></i>
+            Live)</button>
+
+          <button type="submit" class="btn btn-success btn-block rounded-0">Editar publicación</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- Modal (Eliminar publicación)-->
 <div class="modal fade" id="borrarPublicacion" tabindex="-1" role="dialog"
-aria-labelledby="borrarPublicacionCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="borrarPublicacionLongTitle">Borrar publicación</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+  aria-labelledby="borrarPublicacionCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="borrarPublicacionLongTitle">Borrar publicación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
+          hic magni animi, quos
+          fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
+        <form action="" method="post">
+          <button type="submit" class="btn btn-danger btn-block rounded-0">Borrar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

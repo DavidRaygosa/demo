@@ -178,64 +178,106 @@
 </nav>
 </div>
 
-<!-- Modal (Crear usuario)-->
+<!--------------------------------------------------------------------------------------------------------
+  ----------------------------------------- MODALS -------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------->
+
+  <!-- Modal (Crear usuario)-->
 <div class="modal fade" id="crearUsuario" tabindex="-1" role="dialog" aria-labelledby="crearUsuarioCenterTitle"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="crearUsuarioLongTitle">Crear usuario</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearUsuarioLongTitle">Crear usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="text">Nombres(s):</label>
+            <input type="text" class="form-control rounded-0" id="nombreRegisto" required
+              placeholder="Ingrese el (los) nombre(s) del usuario aquí.">
+          </div>
+          <div class="form-group">
+            <label for="text">Apellidos:</label>
+            <input type="text" class="form-control rounded-0" id="apellidosRegisto"
+              placeholder="Ingrese los apellidos del usuario aquí." required>
+          </div>
+          <div class="form-group">
+            <label for="text">Nickname:</label>
+            <input type="text" class="form-control rounded-0" id="nicknameRegisto"
+              placeholder="Ingrese el nickname del usuario aquí." required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" class="form-control rounded-0" id="emailRegisto"
+              placeholder="Ingrese el e-mail del usuario aquí." required>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control rounded-0" id="contraseniaRegistro"
+              placeholder="Ingrese la contraseña del usuario aquí." required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block rounded-0">Crear usuario</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- Modal (Promover usuario)-->
 <div class="modal fade" id="promoverUsuario" tabindex="-1" role="dialog" aria-labelledby="promoverUsuarioCenterTitle"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="promoverUsuarioLongTitle">Promover usuario</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="promoverUsuarioLongTitle">Promover usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
+          hic magni animi, quos
+          fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
+        <form action="" method="post">
+          <button type="submit" class="btn btn-warning btn-block rounded-0">Promover</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
-<!-- Modal (Eliminar usuario)-->
-<div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="eliminarUsuarioCenterTitle"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="eliminarUsuarioLongTitle">Borrar usuario</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+<!-- Modal (Borrar usuario)-->
+<div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="borrarUsuarioCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="borrarUsuarioLongTitle">Borrar usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
+          hic magni animi, quos
+          fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
+        <form action="" method="">
+          <button type="submit" class="btn btn-danger btn-block rounded-0">Borrar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

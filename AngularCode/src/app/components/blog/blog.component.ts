@@ -163,7 +163,7 @@ export class BlogComponent implements OnInit {
 			let backButton = document.getElementById("backListButton") as HTMLSelectElement;
 			let nextButton = document.getElementById("nextListButton") as HTMLSelectElement;
 			this.checkIfDisabledBackListPage(backButton);
-			if(index > 5) this.checkIfDisabledNextListPage(nextButton);
+			this.checkIfDisabledNextListPage(nextButton);
 		},1);
    	}
 
@@ -273,7 +273,7 @@ export class BlogComponent implements OnInit {
    					this.registerErrorMessage = "Email registrado, por favor intente con otro email";
    					return false;
    				}
-				this._userService.checkNickname(form.value.nickname).subscribe(
+				this._userService.checkNickname(form.value.nickname.toUpperCase()).subscribe(
 				response =>
 				{
 					if(response.message != 'No Hay Proyectos Para Mostrar') 
@@ -302,6 +302,7 @@ export class BlogComponent implements OnInit {
    		this.User.image = 'Null';
    		this.User.usertype = 'standard';
    		this.User.nickname = form.value.nickname;
+   		this.User.nickname = this.User.nickname.toUpperCase();
    		this._userService.registerUser(this.User).subscribe(
    			response => 
    			{
