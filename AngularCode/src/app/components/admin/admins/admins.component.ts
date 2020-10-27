@@ -279,6 +279,7 @@ export class AdminsComponent implements OnInit {
 				(response : any) =>
 				{
 					response.documents[0].adminslenght = (response.documents[0].adminslenght - 1);
+					response.documents[0].userslenght = (response.documents[0].userslenght + 1);
 					// SERVICE UPDATE GENERAL SETTINGS
 					this._generalService.updateGeneral(response.documents[0]).subscribe(
 						response=>

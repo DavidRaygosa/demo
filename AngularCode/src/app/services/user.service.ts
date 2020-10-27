@@ -41,4 +41,22 @@ export class UserService {
 		let headers = new HttpHeaders().set('Content-Type', 'application/json');
 		return this._http.put(this.url+'update-user/'+user._id, params, {headers: headers});
 	}
+
+	deleteUser = (id):Observable<any> =>
+	{
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+		return this._http.delete(this.url+'delete-user/'+id, {headers:headers});
+	}
+
+	getUsersRange(skip:number)
+	{
+		let headers = new HttpHeaders().set('Content-Type','application/json');
+		return this._http.get(this.url+'get-usersrange/'+skip, {headers: headers});
+	}
+
+	getUserByID = (id):Observable<any> =>
+	{
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+		return this._http.get(this.url+'get-user/'+id, {headers:headers});
+	}
 }

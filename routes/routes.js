@@ -31,10 +31,13 @@ var multipartMiddleWare = multipart({uploadDir: './uploads'});
 
 	// Users
 		router.post('/register-user', UserController.registerUser);
+		router.get('/get-user/:id?', UserController.getDocument);
 		router.get('/get-users', UserController.getDocuments);
+		router.get('/get-usersrange/:skip?', UserController.getDocumentsRange);
 		router.get('/check-email/:email?', UserController.checkEmail);
 		router.get('/check-nickname/:nickname?', UserController.checkNickname);
 		router.put('/update-user/:id',UserController.updateUser);
+		router.delete('/delete-user/:id',UserController.deleteProject);
 
 	// Admins
 		router.get('/get-adminsrange/:skip?', AdminController.getDocumentsRange);
