@@ -23,11 +23,13 @@ export class AppComponent {
 
 	constructor(private router: Router)
 	{
+		/* CLOCK
 		let countdownInterval = setInterval(() =>
 		{
-			let now = moment().format("hh:mm a"); // LIVETIME
+			let now = moment().format("DD.MM.YYYY HH:mm"); // LIVETIME
  			$('#clockview').text(now);
 		},1000);
+		*/
 	}
 
 	ngOnInit(): void 

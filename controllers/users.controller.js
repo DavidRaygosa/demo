@@ -101,7 +101,7 @@ var controller_user =
 			if(!projectDeleted) return res.status(404).send({message: 'No Se Puede Eliminar Ese Proyecto'});
 			return res.status(200).send({project: projectDeleted});
 		});
-	},
+	}
 }
 
 module.exports = controller_user;

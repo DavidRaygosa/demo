@@ -14,7 +14,7 @@ var router = express.Router();
 // MiddleWare
 
 var multipart = require('connect-multiparty');
-var multipartMiddleWare = multipart({uploadDir: './uploads'});
+var multipartMiddleWarePosts = multipart({uploadDir: './uploads/posts'});
 
 // Routes
 
@@ -24,10 +24,19 @@ var multipartMiddleWare = multipart({uploadDir: './uploads'});
 		router.put('/update-general/:id',GeneralController.updateGeneral);
 
 	// Posts
-		router.post('/new-post', PostController.createDocument);
+		router.post('/create-post', PostController.createDocument);
 		router.get('/get-posts', PostController.getDocuments);
 		router.get('/get-postsrange/:skip?', PostController.getDocumentsRange);
+		router.get('/get-postsrangeadmin/:skip?', PostController.getDocumentsRangeAdmin);
 		router.get('/get-post/:id?', PostController.getDocument);
+		router.put('/update-post/:id',PostController.updatePost);
+		router.delete('/delete-post/:id',PostController.deleteProject);
+		// IMAGES
+			router.get('/get-post-image/:image', multipartMiddleWarePosts, PostController.getImagePostsFile);
+			router.post('/upload-image/:id?', multipartMiddleWarePosts, PostController.uploadImage);
+			router.post('/upload-images/:id?', multipartMiddleWarePosts, PostController.uploadImages);
+			router.put('/delete-image/:image?', multipartMiddleWarePosts, PostController.deleteImage);
+			router.put('/delete-images/:id?/:image?', multipartMiddleWarePosts, PostController.deleteImages);
 
 	// Users
 		router.post('/register-user', UserController.registerUser);

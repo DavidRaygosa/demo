@@ -8,15 +8,20 @@ var ProjectSchema = Schema(
 	title: String,
 	subtitle: String,
 	message: String,
+    transmition: String,
 	comments: 
 	[{
 		id_user: String,
     	comment: String,
 		message_date: String
     }],
+    publishedby: String,
     publication_image: String,
     publication_date: String,
-    createdBy: String
+    images:
+    {
+    	image: String
+    }
 });
 
 module.exports = mongoose.model('posts', ProjectSchema);

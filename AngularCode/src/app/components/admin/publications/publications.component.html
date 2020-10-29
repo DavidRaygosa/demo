@@ -1,412 +1,331 @@
 <h1 class="font-weight-bold text-center text-lg-left pt-4">Publicaciones</h1>
 <hr>
-<form class="form-inline">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-lg-5">
-      <button type="button" class="btn btn-blue btn-block rounded-0" data-toggle="modal"
-        data-target="#crearPublicacion"><i class="fas fa-sticky-note"></i>&nbsp;Crear
-        publicación</button>
-    </div>
-    <div class="col-12 col-sm-4 col-lg-4">
-      <input class="form-control rounded-0" type="search" placeholder="Buscar publicación"
-        aria-label="Buscar usuario">
-    </div>
-    <div class="col-12 col-sm-3 col-lg-3">
-      <button class="btn btn-danger btn-block rounded-0" type="submit"><i
-          class="fas fa-search"></i>&nbsp;Buscar</button>
-    </div>
+<div class="h-100 mt-5 d-flex justify-content-center align-items-center" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+  </div>
 </div>
-</form>
-<div class="container">
-<div class="row justify-content-center align-items-center">
-  <div class="table-responsive">
-    <table class="table">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Portada</th>
-            <th scope="col">Resumen</th>
-            <th scope="col">Cuerpo</th>
-            <th scope="col">Vídeos</th>
-            <th scope="col">Imágenes</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Borrar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">8</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">9</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">10</th>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
-                data-target="#editarPublicacion"><i class="fas fa-pencil-alt"></i>
-              </button>
-            </td>
-            <td><button type="button" class="btn btn-danger rounded-0" data-toggle="modal"
-                data-target="#borrarPublicacion"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-        </tbody>
+<div *ngIf="!loading">
+  <form class="form-inline">
+    <div class="row">
+      <div class="col-12 col-sm-5 col-lg-5">
+        <button type="button" class="btn btn-blue btn-block rounded-0" data-toggle="modal"
+          data-target="#crearPublicacion"><i class="fas fa-sticky-note"></i>&nbsp;Crear
+          publicación</button>
+      </div>
+      <div class="col-12 col-sm-4 col-lg-4">
+        <input class="form-control rounded-0" type="search" placeholder="Buscar publicación"
+          aria-label="Buscar usuario">
+      </div>
+      <div class="col-12 col-sm-3 col-lg-3">
+        <button class="btn btn-danger btn-block rounded-0" type="submit"><i
+            class="fas fa-search"></i>&nbsp;Buscar</button>
+      </div>
+  </div>
+  </form>
+  <div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="table-responsive">
+      <table class="table">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Título</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let post of Posts; let indexOf=index">
+              <th scope="row">{{indexOf+1}}</th>
+              <td>{{post.title}}</td>
+              <td>{{post.publication_date}}</td>
+              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal" data-target="#editarPublicacion" (click)="getPostIDEdit(post._id)"><i class="fas fa-pencil-alt"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger rounded-0" data-toggle="modal" data-target="#borrarPublicacion" (click)="getPostIDDelete(post._id)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </table>
-    </table>
+    </div>
   </div>
-</div>
 
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end pt-4">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Siguiente</a>
-    </li>
-  </ul>
-</nav>
-</div>
+  <nav aria-label="Page navigation example">
+      <!--Paginación-->
+      <ul class="pagination justify-content-center mb-4">
+        <li id="backListButton" class="page-item">
+          <a class="page-link rounded-0 clickeable noselect" (click)="backListPage(true)">&larr; <span class="d-none d-lg-inline"> Anterior </span></a>
+        </li>
+        <li class="page-item clickeable noselect" *ngFor="let page of NumberofPagination | slice: viewListPage.start:viewListPage.end; let indexOf=index;" [class.active]="selectedPage == page" (click)="setActivePagination(page)">
+          <a class="page-link noselect" (click)="changePage(page)">{{page}}</a>
+        </li>
+        <li id="nextListButton" class="page-item">
+          <a class="page-link rounded-0 clickeable noselect" (click)="nextListPage(true)"> <span class="d-none d-lg-inline"> Siguiente </span> &rarr; </a>
+        </li>
+      </ul>
+  </nav>
+  </div>
 
-<!--------------------------------------------------------------------------------------------------------
-  ----------------------------------------- MODALS -------------------------------------------------------
-  ------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------
+    ----------------------------------------- MODALS -------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------->
 
-  <!-- Modal (Crear publicación)-->
-<div class="modal fade bd-example-modal-lg" id="crearPublicacion" data-backdrop="static" data-keyboard="false"
-  tabindex="-1" role="dialog" aria-labelledby="crearPublicacionCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content rounded-0">
-      <div class="modal-header">
-        <h5 class="modal-title" id="crearPublicacionLongTitle">Crear publicación</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post">
+    <!-- Modal (Crear publicación)-->
+  <div class="modal fade bd-example-modal-lg" id="crearPublicacion" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="crearPublicacionCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="crearPublicacionLongTitle">Crear publicación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #createform="ngForm" (ngSubmit)="onSubmitCreate(createform)">
 
-          <div class="form-group">
-            <label for="resumenPublicacion">Tílulo:</label>
-            <input type="text" class="form-control rounded-0" id="resumenPublicacion"
-              placeholder="Escriba el título de la publicación aquí." required>
-          </div>
-
-          <div class="form-group">
-            <label for="portadaPublicacion">Portada:</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input rounded-0" id="portadaPublicacion" lang="es" required>
-              <label class="custom-file-label rounded-0" for="portadaPublicacion">Seleccionar imágen de
-                portada.</label>
+            <div class="form-group">
+              <label for="resumenPublicacion">Tílulo:</label>
+              <input type="text" class="form-control rounded-0" id="resumenPublicacion" placeholder="Escriba el título de la publicación aquí." name="createTitle" ngModel required>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="resumenPublicacion">Resumen:</label>
-            <textarea class="form-control rounded-0" id="resumenPublicacion" rows="2"
-              placeholder="Escriba el resumen la publicación aquí." required></textarea>
-          </div>
+            <div class="dropdown-divider"></div>
 
-          <div class="form-group">
-            <label for="cuerpoPublicacion">Cuerpo:</label>
-            <textarea class="form-control rounded-0" id="cuerpoPublicacion" rows="4"
-              placeholder="Escriba el cuerpo la publicación aquí." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="imagenPublicacion">Imágenes:</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input rounded-0" id="imagenPublicacion" lang="es">
-              <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciones una imágen.</label>
+            <div class="form-group">
+              <label for="portadaPublicacion">Portada:</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input rounded-0" id="portadaPublicacion" lang="es"  (change)="createFileChangePortada($event)" name="createPortada" ngModel required>
+                <label class="custom-file-label rounded-0" for="portadaPublicacion">Seleccionar imágen de
+                  portada.</label>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="transmisionPublicacion">Transmisión:</label>
-            <input type="text" class="form-control rounded-0" id="transmisionPublicacion"
-              placeholder="Escriba la URL de la trasmisión aquí.">
-          </div>
+            <div class="form-group">
+              <img id="portadaPublicacionEditImage" #createModalPortadaImage src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
+            </div>
 
-          <button class="btn btn-blue btn-block rounded-0">Añadir imágen</button>
-          <button class="btn btn-blue btn-block rounded-0">Añadir transmisión (<i class="fab fa-facebook-f"></i>
-            Live)</button>
+            <div class="dropdown-divider"></div>
 
-          <button class="btn btn-danger btn-block rounded-0">Borrar imágen</button>
-          <button class="btn btn-danger btn-block rounded-0">Borrar transmisión (<i class="fab fa-facebook-f"></i>
-            Live)</button>
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch10" name="turnTransmition" [(ngModel)]="createTurnTransmition" (change)="turnCreateTransmition(createTurnTransmition)" [checked]="createTurnTransmition">
+                <label class="custom-control-label" for="customSwitch10">Transmisión Facebook</label>
 
-          <button type="submit" class="btn btn-success btn-block rounded-0">Crear publicación</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+                <div *ngIf="createTurnTransmition">
+                  <input type="text" class="form-control rounded-0" #transmisionPublicacion placeholder="Escriba la URL de la trasmisión aquí.">
+                  <div class="d-flex align-items-end flex-column mt-2">
+                    <button type="button" class="flex-end btn btn-secondary rounded-0" (click)="testTransmition()">Probar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div *ngIf="textCreateTransmition">
+                <div #createTransmition class="fb-video" 
+                data-href=""
+                data-autoplay = "true"
+                data-show-text="false" 
+                data-width="auto"></div>
+                <span class="d-block">Conexión realizada a:</span>
+                <span class="d-block">{{transmisionPublicacion.nativeElement.value}} </span>
+              </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="form-group">
+              <label for="resumenPublicacion">Resumen:</label>
+              <textarea class="form-control rounded-0" id="resumenPublicacion" rows="2" placeholder="Escriba el resumen la publicación aquí." name="createSubtitle" ngModel required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="cuerpoPublicacion">Cuerpo:</label>
+              <textarea class="form-control rounded-0" id="cuerpoPublicacion" rows="4" placeholder="Escriba el cuerpo la publicación aquí." name="createMessage" ngModel required></textarea>
+            </div>
+
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch11" name="turnTransmition" [(ngModel)]="createTurnImages" (change)="turnCreateImages(createTurnImages)" [checked]="createTurnImages">
+                <label class="custom-control-label" for="customSwitch11">Imagenes</label>
+
+                <div *ngIf="createTurnImages">
+                  <li class="no-list d-block mt-3" *ngFor="let image of CreatePostImages; let indexOf=index">
+                    <img id="createImages{{indexOf}}" src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
+                    <div class="d-flex flex-row-reverse mt-2 mb-2">
+                      <a class="btn btn-danger ml-2" (click)="createDeleteImage(indexOf)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                  </li>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input rounded-0" #imagenPublicacion id="imagenPublicacion" lang="es" (change)="createFileAddImages($event)">
+                    <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciones una imágen.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block rounded-0" [disabled]="!createform.valid">Crear publicación</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #registerModal type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal (Editar publicacion)-->
-<div class="modal fade bd-example-modal-lg" id="editarPublicacion" data-backdrop="static" data-keyboard="false"
-  tabindex="-1" role="dialog" aria-labelledby="editarPublicacionCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content rounded-0">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editarPublicacionLongTitle">Editar publicación</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="">
+  <!-- Modal (Editar publicacion)-->
+  <div class="modal fade bd-example-modal-lg" id="editarPublicacion" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="editarPublicacionCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarPublicacionLongTitle">Editar publicación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="">
 
-          <div class="form-group">
-            <label for="resumenPublicacionEdit">Tílulo:</label>
-            <input type="text" class="form-control rounded-0" id="resumenPublicacionEdit"
-              placeholder="Escriba el título de la publicación aquí." required>
-          </div>
-
-          <div class="form-group">
-            <label for="fechaPublicacionEdit">Fecha:</label>
-            <input type="datetime-local" class="form-control rounded-0" id="fechaPublicacionEdit" name="fecha-publicacion-edit"
-              value="2020-11-01T00:00" min="2020-11-01T00:00" max="2030-12-31T00:00" disabled>
-          </div>
-
-          <div class="form-group">
-            <label for="portadaPublicacionEdit">Portada:</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input rounded-0" id="portadaPublicacionEdit" lang="es" required>
-              <label class="custom-file-label rounded-0" for="portadaPublicacion">Seleccionar imágen de
-                portada.</label>
+            <div class="form-group">
+              <label for="resumenPublicacionEdit">Tílulo:</label>
+              <input type="text" class="form-control rounded-0" id="resumenPublicacionEdit" placeholder="Escriba el título de la publicación aquí." #editModalTitle required>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="resumenPublicacionEditar">Resumen:</label>
-            <textarea class="form-control rounded-0" id="resumenPublicacionEdit" rows="2"
-              placeholder="Escriba el resumen la publicación aquí." required></textarea>
-          </div>
+            <div class="dropdown-divider"></div>
 
-          <div class="form-group">
-            <label for="cuerpoPublicacionEditar">Cuerpo:</label>
-            <textarea class="form-control rounded-0" id="cuerpoPublicacionEdit" rows="4"
-              placeholder="Escriba el cuerpo la publicación aquí." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="imagenPublicacionEdit">Imágenes:</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input rounded-0" id="imagenPublicacionEdit" lang="es">
-              <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciones una imágen.</label>
+            <div class="form-group">
+              <label for="portadaPublicacionEditImage">Portada:</label>
+              <img id="portadaPublicacionEditImage" #editModalPortadaImage src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="transmisionPublicacionEdit">Transmisión:</label>
-            <input type="text" class="form-control rounded-0" id="transmisionPublicacionEdit"
-              placeholder="Escriba la URL de la trasmisión aquí.">
-          </div>
+            <div class="form-group"> 
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="changeImage" [(ngModel)]="editchangeImage" (change)="changeImage(editchangeImage)">
+                <label class="custom-control-label" for="customSwitch1">Cambiar Portada</label>
 
-          <button class="btn btn-blue btn-block rounded-0">Añadir imágen</button>
-          <button class="btn btn-blue btn-block rounded-0">Añadir transmisión (<i class="fab fa-facebook-f"></i>
-            Live)</button>
-          <button class="btn btn-danger btn-block rounded-0">Borrar imágen</button>
-          <button class="btn btn-danger btn-block rounded-0">Borrar transmisión (<i class="fab fa-facebook-f"></i>
-            Live)</button>
+                <div class="custom-file" *ngIf="editchangeImage"> 
+                  <input #editChangeImagePortada type="file" class="custom-file-input rounded-0" id="portadaPublicacionEdit" lang="es" (change)="editFileChangePortada($event)" required> 
+                  <label class="custom-file-label rounded-0"for="portadaPublicacion">Seleccionar imágen de portada.</label>
+                </div> 
+              </div>
+            </div>
 
-          <button type="submit" class="btn btn-success btn-block rounded-0">Editar publicación</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+            <div class="dropdown-divider"></div>
+
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2" name="turnTransmition" [(ngModel)]="editTurnTransmition" #editTurnTransmitionChecked (change)="turnTransmition(editTurnTransmition)" [checked]="editTurnTransmition">
+                <label class="custom-control-label" for="customSwitch2">Transmisión</label>
+
+                <div *ngIf="editTurnTransmition">
+                  <div #editTransmition class="fb-video" 
+                  data-href=""
+                  data-autoplay = "true"
+                  data-show-text="false" 
+                  data-width="auto"></div>
+
+                  <div class="custom-control custom-switch mt-3">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch3" name="changeTransmition" [(ngModel)]="editChangeTransmition" (change)="changeTransmition(editChangeTransmition)">
+                    <label class="custom-control-label" for="customSwitch3">Cambiar Transmisión:</label>
+
+                    <div *ngIf="editChangeTransmition">
+                      <input #editModalTransmition type="text" class="form-control rounded-0" id="transmisionPublicacionEdit"placeholder="Escriba la URL de la trasmisión aquí.">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="form-group">
+              <label for="resumenPublicacionEditar">Resumen:</label>
+              <textarea class="form-control rounded-0" id="resumenPublicacionEdit" rows="2" placeholder="Escriba el resumen la publicación aquí." #editModalSubtitle required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="cuerpoPublicacionEditar">Cuerpo:</label>
+              <textarea class="form-control rounded-0" id="cuerpoPublicacionEdit" rows="4" placeholder="Escriba el cuerpo la publicación aquí." #editModalMessage required></textarea>
+            </div>
+
+            <div class="form-group">
+
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch4" name="turnImages" [(ngModel)]="editTurnImages" (change)="turnImages(editTurnImages)" [checked]="editTurnImages">
+                <label class="custom-control-label" for="customSwitch4">Imágenes</label>
+
+                <div *ngIf="editTurnImages">
+                  <li class="no-list d-block mt-3" *ngFor="let image of PostImages; let indexOf=index">
+                    <img src="{{url+'get-post-image/'+image}}" class="img-fluid mx-auto d-block" width="200px" height="200px">
+                    <div class="d-flex flex-row-reverse mt-2">
+
+                       <a href="#List-{{indexOf}}" class="btn btn-danger" data-toggle="collapse"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="collapse" id="List-{{indexOf}}">
+                      <div class="card card-body">
+                        La imagen se borrará permanentemente. ¿Desea borrarla?.
+                        <div class="d-flex flex-row-reverse mt-2">
+                          <a class="btn btn-danger ml-2" (click)="editDeleteImage(image)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                          <a href="#List-{{indexOf}}" class="btn btn-primary" data-toggle="collapse"><i class="fas fa-window-close" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <div class="custom-file mt-3">
+                    <input type="file" class="custom-file-input rounded-0" id="imagenPublicacionEdit" lang="es" (change)="editFileChangeImages($event)">
+                    <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciona una imágen.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block rounded-0" (click)="updatePost()">Confirmar Cambios</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #editModal type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal (Eliminar publicación)-->
-<div class="modal fade" id="borrarPublicacion" tabindex="-1" role="dialog"
-  aria-labelledby="borrarPublicacionCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content rounded-0">
-      <div class="modal-header">
-        <h5 class="modal-title" id="borrarPublicacionLongTitle">Borrar publicación</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
-          hic magni animi, quos
-          fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
-        <form action="" method="post">
-          <button type="submit" class="btn btn-danger btn-block rounded-0">Borrar</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+  <!-- Modal (Eliminar publicación)-->
+  <div class="modal fade" id="borrarPublicacion" tabindex="-1" role="dialog"
+    aria-labelledby="borrarPublicacionCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="borrarPublicacionLongTitle">Borrar publicación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo sit eius voluptates
+            hic magni animi, quos
+            fugiat, totam officia suscipit excepturi quasi ipsa blanditiis?</p>
+          <form action="" method="post">
+            <button type="submit" class="btn btn-danger btn-block rounded-0" (click)="deletePost()" [disabled]="deleting">
+              <span *ngIf="!deleting">Borrar</span>
+              <div class="spinner-border text-secondary" role="status" *ngIf="deleting">
+              </div>
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #deleteModal type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
