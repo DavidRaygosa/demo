@@ -54,6 +54,13 @@ export class PostsService {
 		return this._http.put(this.url+'update-post/'+post._id, params, {headers: headers});
 	}
 
+	addComment = (idPost, comment):Observable<any> =>
+	{
+		let params = JSON.stringify(comment);
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+		return this._http.put(this.url+'upload-comment/'+idPost, params, {headers: headers});
+	}
+
 	deletePost = (id):Observable<any> =>
 	{
 		let headers = new HttpHeaders().set('Content-Type', 'application/json');

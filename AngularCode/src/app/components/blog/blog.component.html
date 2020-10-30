@@ -41,7 +41,9 @@
         <!-- Blog Post -->
         <li class="li my-paroller thumbnail-card" *ngFor="let post of posts">
           <div class="card mb-4 shadow rounded-0 wrap">
-            <img class="card-img-top rounded-0" src="assets/img/4k.jpg" alt="Card image cap">
+            <div class="card-img-top rounded-0 portada">
+                <img src="{{url+'get-post-image/'+post.publication_image}}" alt="Card image cap" width="100%" height="100%">
+            </div>
             <div class="card-body">
               <h2 class="card-title">{{post.title}}</h2>
               <p class="card-text">{{post.subtitle}}</p>
@@ -49,7 +51,7 @@
             </div>
             <div class="card-footer text-muted">
               Publicado {{post.publication_date}} por:
-              <a href="#">Demo</a>
+              {{post.publishedby}}
             </div>
           </div>
         </li>

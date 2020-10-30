@@ -10,56 +10,188 @@
       <div class="col-lg-10 mx-auto">
         <!-- Título-->
         <h1 class="mt-4">{{post.title}}</h1>
+        <!--Fecha y Autor-->
+        <p class="d-inline"> <span class="lead"> Publicado - </span> {{post.publication_date}} por - <span class="lead"> {{post.publishedby}} </span> </p>
         <!-- Video -->
         <div id="fb-root"></div>
         <!-- IF POST CONTAIN VIDEO, THIS DIV WILL SHOWED -->
-        <div> 
+        <div *ngIf="transmition"> 
           <!-- FACEBOOK VIDEO LINK IN DATA-HREF (ANGULAR VAR) -->
-          <div class="fb-video" 
-          data-href="https://www.facebook.com/wereverwerooficial/videos/457746775141737/"
+          <div #transmisionPublicacion class="fb-video" 
+          data-href=""
           data-autoplay = "true"
           data-show-text="false" 
           data-width="auto"></div>
         </div>
-        <!--Autor-->
-        <p class="lead">por Demo</p>
-        <hr>
-        <!--Fecha-->
-        <p>Publicado {{post.publication_date}}</p>
         <hr>
         <!--Imáge de post-->
-        <img class="img-fluid shadow rounded-0" src="assets/img/blog-post.jpg" alt="">
+        <div class="d-flex justify-content-center align-items-center">
+          <img class="img-fluid shadow rounded-0" src="{{url+'get-post-image/'+post.publication_image}}" alt="">
+        </div>
         <hr>
         <!--Contenido de publicación-->
         <p>
           {{post.message}}
         </p>
-        <!--Formulario de comentarios-->
-        <div class="card rounded-0 my-4">
-          <h5 class="card-header">Deje un comentario</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-blue rounded-0">Enviar</button>
-            </form>
+        <hr>
+
+        <div *ngIf="images">
+        <span class="lead"> Galeria </span>
+          <div id="carousel" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carousel" *ngFor="let image of post.images;let IndexOf = index" [attr.data-slide-to]="IndexOf"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item w-100 mycarusel" *ngFor="let image of post.images; let IndexOf = index; let isFirst = first" [ngClass]="{active:isFirst}">
+                <img src="{{url+'get-post-image/'+image}}" class="d-block" alt="carousel" width="100%" height="100%">
+              </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon text-danger" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
           </div>
         </div>
 
-        <!--Comentarios-->
-        <li class="clearli" *ngFor="let comment of post.comments">
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0 mb-0">{{comment.id_user}}  </h5> 
-              <small class="mt-0 mb-2 d-block"> Publicado {{comment.message_date}} </small>
-              {{comment.comment}}
+        <div *ngIf="!logged">
+          <!--Inicio de sesión-->
+          <div class="card text-white bg-dark border-dark my-4 shadow rounded-0" *ngIf="!logged">
+            <h5 class="card-header">Para comentar, inicie sesión</h5>
+            <div class="card-body text-center">
+              <button type="button" data-toggle="modal" data-target="#inicioDeSesion" class="btn btn-block btn-blue rounded-0">Ingresar (Inicio de sesión)</button>
+              <button type="button" data-toggle="modal" data-target="#registroUsuario" class="btn btn-block btn-danger rounded-0">Registrar (Nuevo usuario)</button>
             </div>
           </div>
-        </li>
+        </div>
+        <div *ngIf="logged">
+          <!--Formulario de comentarios-->
+          <div class="card rounded-0 my-4">
+            <h5 class="card-header">Deje un comentario</h5>
+            <div class="card-body">
+              <form #commentform="ngForm" (ngSubmit)="onSubmitComment(commentform)">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="comment" ngModel required></textarea>
+                </div>
+                <button type="submit" class="btn btn-blue rounded-0" [disabled]="!commentform.valid">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
 
+        <span class="d-block lead mb-4"> Comentarios </span>
+        <!--Comentarios-->
+        <div *ngIf="loadedComments">
+          <li class="clearli" *ngFor="let comment of comments">
+            <div class="media mb-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0 mb-0">{{comment.nickname}}  </h5> 
+                <small class="mt-0 mb-2 d-block"> Publicado {{comment.date}} </small>
+                {{comment.comment}}
+              </div>
+            </div>
+          </li>
+        </div>
+        <div class="d-flex justify-content-center align-items-center" *ngIf="!loadedComments">
+          <div class="spinner-border text-primary" role="status">
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!--Inicio de sesión (Modal)-->
+  <div class="modal fade" id="inicioDeSesion" tabindex="-1" role="dialog" aria-labelledby="inicioDeSesionTituloCentral" aria-hidden="true" *ngIf="!closedModals">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inicioDeSesionTituloLargo">Inicio de sesión</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #loginform="ngForm" (ngSubmit)="onSubmitLogin(loginform)">
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" class="form-control rounded-0" id="emailUsuario" aria-describedby="emailAyuda"placeholder="Ingrese su E-mail aquí" name="email" ngModel required #email="ngModel">
+              <small id="emailAyuda" class="form-text text-muted">No compartiremos su e-mail con nadie.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" class="form-control rounded-0" id="passwordUsuario" aria-describedby="passwordAyuda" placeholder="Ingrese su contraseña aquí" name="password" ngModel required #password="ngModel">
+              <small id="passwordAyuda" class="form-text text-muted">No compartiremos su contraseña con nadie.</small>
+            </div>
+            <!-- ALERT IF FORM HAS ERROR -->
+            <div class="alert alert-danger" role="alert" *ngIf="loginError">
+              {{loginErrorMessage}}
+            </div>
+            <button type="submit" class="btn btn-blue btn-block rounded-0" [disabled]="!loginform.valid">Iniciar sesión</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #loginModal type="button" class="btn btn-danger rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Registo (Modal)-->
+  <div class="modal fade" id="registroUsuario" tabindex="-1" role="dialog"
+    aria-labelledby="registroUsuarioTituloCentral" aria-hidden="true" *ngIf="!closedModals">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registroUsuarioTituloLargo">Registro de usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #registerform="ngForm" (ngSubmit)="onSubmitRegister(registerform)">
+
+            <div class="form-group">
+              <label for="name">Nombre(s):</label>
+              <input type="text" class="form-control rounded-0" id="name" placeholder="Ingrese su Nombre" name="name" ngModel required #name="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="lastname">Apellido(s):</label>
+              <input type="text" class="form-control rounded-0" id="lastname" placeholder="Ingrese su Apellido" name="lastname" ngModel required #lastname="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" class="form-control rounded-0" id="emailRegisto" placeholder="Ingrese su E-mail aquí" name="email" ngModel required #email="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="text">Nickname:</label>
+              <input type="text" class="form-control rounded-0" id="nicknameRegisto" aria-describedby="nicknamelAyuda" placeholder="Ingrese su nickname de usuario aquí" name="nickname" ngModel required #nickname="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" class="form-control rounded-0" id="contraseñaRegistro" placeholder="Ingrese su contraseña aquí" name="password" ngModel required #password="ngModel">
+            </div>
+            <!-- ALERT IF FORM HAS ERROR -->
+            <div class="alert alert-danger" role="alert" *ngIf="registerError">
+              {{registerErrorMessage}}
+            </div>
+            <button type="submit" class="btn btn-blue btn-block rounded-0" [disabled]="!registerform.valid">Registrar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #registerModal type="button" class="btn btn-danger rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

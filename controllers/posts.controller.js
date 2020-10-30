@@ -74,6 +74,18 @@ var controller_posts =
 		});
 	},
 
+	addComment: (req, res) =>
+	{
+		let projectID = req.params.id;
+		var comment = req.body;
+		post.findByIdAndUpdate(projectID,{$push:{comments: comment}}, {new:true},(error, projectUpdated) =>
+		{
+			if(error) return res.status(500).send({message: 'La Imagen No Se Ha Subido'});
+			if(!projectUpdated) return res.status(404).send({message: 'El Documento No Existe'});
+			return res.status(200).send({project: projectUpdated});
+		});
+	},
+
 	uploadImage: (req, res) =>
 	{
 		let projectID = req.params.id;
@@ -222,7 +234,7 @@ var controller_posts =
 			if(!projectDeleted) return res.status(404).send({message: 'No Se Puede Eliminar Ese Proyecto'});
 			return res.status(200).send({project: projectDeleted});
 		});
-	},
+	}
 }
 
 module.exports = controller_posts;

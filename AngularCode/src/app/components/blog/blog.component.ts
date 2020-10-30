@@ -6,12 +6,16 @@ import { PostModel } from '../../models/post.model';
 import { PostsService } from '../../services/posts.service';
 import { GeneralService } from '../../services/general.service';
 import { UserService } from '../../services/user.service';
+import { Global } from '../../services/global';
 //--------------------- MODELS -------------------------------//
 import { User } from '../../models/user.model';
 //--------------------- LIBRARIES ---------------------------//
 import { NgAnimateScrollService } from 'ng-animate-scroll';
 import simpleParallax from 'simple-parallax-js';
 import ScrollReveal from 'scrollreveal'
+import * as moment from 'moment';
+import 'moment/locale/es';
+moment.locale('es');
 
 declare var $ : any;
 
@@ -23,6 +27,9 @@ declare var $ : any;
 })
 export class BlogComponent implements OnInit {
 
+	//----------- URL -----------
+	public url:string;
+	//---------------------------
 	public posts;
 	public NumberofPagination;
 	public paginationList;
@@ -55,7 +62,10 @@ export class BlogComponent implements OnInit {
 		private _generalService:GeneralService, 
 		private _animateScrollService: NgAnimateScrollService,
 		private _userService:UserService
-	) { }
+	) 
+	{ 
+		this.url = Global.url;
+	}
 
 	ngOnInit(): void 
 	{		
@@ -141,8 +151,16 @@ export class BlogComponent implements OnInit {
 	//---------------------------- POSTS -----------------------------------------//
 	getPosts()
 	{
-		this._postService.getPostRange(this.rangePosts.skip)
-		.subscribe((response : any) => {this.posts = response.documents;this.startParoller();});
+		this._postService.getPostRange(this.rangePosts.skip).subscribe((response : any) => 
+		{
+			this.posts = response.documents;
+			this.posts.forEach((Element, Index) =>
+			{
+				let date = new Date(Element.publication_date);
+				this.posts[Index].publication_date = moment.utc(date).fromNow();
+			});
+			this.startParoller();
+		});
 	}
 
 	changePage(numberofPage:number, target: HTMLElement)
@@ -306,9 +324,20 @@ export class BlogComponent implements OnInit {
    		this._userService.registerUser(this.User).subscribe(
    			response => 
    			{
-   				this._SESSION = response.message;
-   				localStorage.setItem('_SESSION', JSON.stringify(this._SESSION));
-   				this.getSession();
+				// SERVICE CALL GENERAL SETTINGS
+				this._generalService.getGeneral().subscribe(
+				(response : any) =>
+				{
+					response.documents[0].userslenght = (response.documents[0].userslenght + 1);
+					// SERVICE UPDATE GENERAL SETTINGS
+					this._generalService.updateGeneral(response.documents[0]).subscribe(
+						response=>
+						{
+   							this._SESSION = response.message;
+   							localStorage.setItem('_SESSION', JSON.stringify(this._SESSION));
+   							this.getSession();
+						});
+				});
    			});
    	}
 

@@ -7,7 +7,7 @@ import { Global } from '../../../services/global';
 //--------------------- MODELS -------------------------------//
 import { PostModel } from '../../../models/post.model';
 import { User } from '../../../models/user.model';
-//--------------------- MODELS -------------------------------//
+//--------------------- LIBRARIES -------------------------------//
 import * as moment from 'moment';
 import 'moment/locale/es';
 moment.locale('es');
