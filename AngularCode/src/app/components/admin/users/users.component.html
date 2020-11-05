@@ -12,13 +12,12 @@
   		    data-target="#crearUsuario"><i class="fas fa-user-plus"></i>&nbsp;Crear
   		    usuario</button>
   		</div>
-  	    <div class="col-12 col-sm-4 col-lg-4">
-  	      <input class="form-control rounded-0" type="search" placeholder="Buscar usuarios" aria-label="Buscar usuario">
-  	    </div>
-  	    <div class="col-12 col-sm-3 col-lg-3">
-  	      <button class="btn btn-danger btn-block rounded-0" type="submit"><i
-  	          class="fas fa-search"></i>&nbsp;Buscar</button>
-  	    </div>
+	    <div class="col-12 col-sm-4 col-lg-4">
+	      <input #searchInput [ngStyle]="{'border': searchBorderColor}" class="form-control rounded-0" type="search" placeholder="Email o Nickname" aria-label="Email o Nickname">
+	    </div>
+	    <div class="col-12 col-sm-3 col-lg-3">
+	      <button class="btn btn-danger btn-block rounded-0" type="submit" data-toggle="modal" data-target="#searchUserModal" (click)="searchUser()"><i class="fas fa-search"></i>&nbsp;Buscar</button>
+	    </div>
   	</div>
   </form>
   <div class="container">
@@ -130,7 +129,7 @@
   </div>
 
   <!-- Modal (Editar administrador)-->
-  <div class="modal fade" id="editarAdmin" tabindex="-1" role="dialog" aria-labelledby="editarAdminCenterTitle"
+  <div class="modal fade" id="editarAdmin" tabindex="1" role="dialog" aria-labelledby="editarAdminCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content rounded-0">
@@ -211,6 +210,67 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary rounded-0" #deleteModal data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (Buscar usuario)-->
+  <div class="modal fade" id="searchUserModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropSearchUser" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchUserModal">Resultado de busqueda</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="enableSearch">
+            <div class="table-responsive">
+              <table class="table">
+                <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nombre(s)</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Nickname</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Promover</th>
+                      <th scope="col">Borrar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{search.name}}</td>
+                      <td>{{search.lastname}}</td>
+                      <td>{{search.email}}</td>
+                      <td>{{search.nickname}}</td>
+                      <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal"
+                          data-target="#editarAdmin" (click)="getUserIDEdit(search._id)"><i class="fas fa-pencil-alt"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-warning rounded-0" data-toggle="modal" data-target="#promoverUsuario" (click)="getUserID(search._id)"><i class="fas fa-arrow-up"></i></button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-danger rounded-0 text-center" data-toggle="modal"data-target="#eliminarUsuario" (click)="getUserID(search._id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="!enableSearch">
+            <span> Ningun Resultado </span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #closeSearch type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

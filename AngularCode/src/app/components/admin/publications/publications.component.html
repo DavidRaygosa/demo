@@ -13,12 +13,10 @@
           publicación</button>
       </div>
       <div class="col-12 col-sm-4 col-lg-4">
-        <input class="form-control rounded-0" type="search" placeholder="Buscar publicación"
-          aria-label="Buscar usuario">
+        <input #searchInput [ngStyle]="{'border': searchBorderColor}" class="form-control rounded-0" type="search" placeholder="Titulo"aria-label="Titulo">
       </div>
       <div class="col-12 col-sm-3 col-lg-3">
-        <button class="btn btn-danger btn-block rounded-0" type="submit"><i
-            class="fas fa-search"></i>&nbsp;Buscar</button>
+        <button class="btn btn-danger btn-block rounded-0" type="submit" data-toggle="modal" data-target="#searchModal" (click)="searchPost()"><i class="fas fa-search"></i>&nbsp;Buscar</button>
       </div>
   </div>
   </form>
@@ -41,11 +39,11 @@
               <th scope="row">{{indexOf+1}}</th>
               <td>{{post.title}}</td>
               <td>{{post.publication_date}}</td>
-              <td><button type="button" class="btn btn-blue rounded-0" data-toggle="modal" data-target="#editarPublicacion" (click)="getPostIDEdit(post._id)"><i class="fas fa-pencil-alt"></i>
+              <td><button #searchEditBtn type="button" class="btn btn-blue rounded-0" data-toggle="modal" data-target="#editarPublicacion" (click)="getPostIDEdit(post._id)"><i class="fas fa-pencil-alt"></i>
                 </button>
               </td>
               <td>
-                <button type="button" class="btn btn-danger rounded-0" data-toggle="modal" data-target="#borrarPublicacion" (click)="getPostIDDelete(post._id)">
+                <button #searchDeleteBtn type="button" class="btn btn-danger rounded-0" data-toggle="modal" data-target="#borrarPublicacion" (click)="getPostIDDelete(post._id)">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
               </td>
@@ -55,7 +53,6 @@
       </table>
     </div>
   </div>
-
 
   <nav aria-label="Page navigation example">
       <!--Paginación-->
@@ -90,14 +87,11 @@
         </div>
         <div class="modal-body">
           <form #createform="ngForm" (ngSubmit)="onSubmitCreate(createform)">
-
             <div class="form-group">
               <label for="resumenPublicacion">Tílulo:</label>
               <input type="text" class="form-control rounded-0" id="resumenPublicacion" placeholder="Escriba el título de la publicación aquí." name="createTitle" ngModel required>
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <label for="portadaPublicacion">Portada:</label>
               <div class="custom-file">
@@ -106,18 +100,14 @@
                   portada.</label>
               </div>
             </div>
-
             <div class="form-group">
               <img id="portadaPublicacionEditImage" #createModalPortadaImage src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch10" name="turnTransmition" [(ngModel)]="createTurnTransmition" (change)="turnCreateTransmition(createTurnTransmition)" [checked]="createTurnTransmition">
                 <label class="custom-control-label" for="customSwitch10">Transmisión Facebook</label>
-
                 <div *ngIf="createTurnTransmition">
                   <input type="text" class="form-control rounded-0" #transmisionPublicacion placeholder="Escriba la URL de la trasmisión aquí.">
                   <div class="d-flex align-items-end flex-column mt-2">
@@ -126,7 +116,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <div *ngIf="textCreateTransmition">
                 <div #createTransmition class="fb-video" 
@@ -138,24 +127,19 @@
                 <span class="d-block">{{transmisionPublicacion.nativeElement.value}} </span>
               </div>
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <label for="resumenPublicacion">Resumen:</label>
               <textarea class="form-control rounded-0" id="resumenPublicacion" rows="2" placeholder="Escriba el resumen la publicación aquí." name="createSubtitle" ngModel required></textarea>
             </div>
-
             <div class="form-group">
               <label for="cuerpoPublicacion">Cuerpo:</label>
               <textarea class="form-control rounded-0" id="cuerpoPublicacion" rows="4" placeholder="Escriba el cuerpo la publicación aquí." name="createMessage" ngModel required></textarea>
             </div>
-
             <div class="form-group">
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch11" name="turnTransmition" [(ngModel)]="createTurnImages" (change)="turnCreateImages(createTurnImages)" [checked]="createTurnImages">
                 <label class="custom-control-label" for="customSwitch11">Imagenes</label>
-
                 <div *ngIf="createTurnImages">
                   <li class="no-list d-block mt-3" *ngFor="let image of CreatePostImages; let indexOf=index">
                     <img id="createImages{{indexOf}}" src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
@@ -170,7 +154,6 @@
                 </div>
               </div>
             </div>
-
             <button type="submit" class="btn btn-success btn-block rounded-0" [disabled]="!createform.valid">Crear publicación</button>
           </form>
         </div>
@@ -194,81 +177,63 @@
         </div>
         <div class="modal-body">
           <form action="" method="">
-
             <div class="form-group">
               <label for="resumenPublicacionEdit">Tílulo:</label>
               <input type="text" class="form-control rounded-0" id="resumenPublicacionEdit" placeholder="Escriba el título de la publicación aquí." #editModalTitle required>
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <label for="portadaPublicacionEditImage">Portada:</label>
               <img id="portadaPublicacionEditImage" #editModalPortadaImage src="" class="img-fluid mx-auto d-block" width="200px" height="200px">
             </div>
-
             <div class="form-group"> 
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1" name="changeImage" [(ngModel)]="editchangeImage" (change)="changeImage(editchangeImage)">
                 <label class="custom-control-label" for="customSwitch1">Cambiar Portada</label>
-
                 <div class="custom-file" *ngIf="editchangeImage"> 
                   <input #editChangeImagePortada type="file" class="custom-file-input rounded-0" id="portadaPublicacionEdit" lang="es" (change)="editFileChangePortada($event)" required> 
                   <label class="custom-file-label rounded-0"for="portadaPublicacion">Seleccionar imágen de portada.</label>
                 </div> 
               </div>
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch2" name="turnTransmition" [(ngModel)]="editTurnTransmition" #editTurnTransmitionChecked (change)="turnTransmition(editTurnTransmition)" [checked]="editTurnTransmition">
                 <label class="custom-control-label" for="customSwitch2">Transmisión</label>
-
                 <div *ngIf="editTurnTransmition">
                   <div #editTransmition class="fb-video" 
                   data-href=""
                   data-autoplay = "true"
                   data-show-text="false" 
                   data-width="auto"></div>
-
                   <div class="custom-control custom-switch mt-3">
                     <input type="checkbox" class="custom-control-input" id="customSwitch3" name="changeTransmition" [(ngModel)]="editChangeTransmition" (change)="changeTransmition(editChangeTransmition)">
                     <label class="custom-control-label" for="customSwitch3">Cambiar Transmisión:</label>
-
                     <div *ngIf="editChangeTransmition">
                       <input #editModalTransmition type="text" class="form-control rounded-0" id="transmisionPublicacionEdit"placeholder="Escriba la URL de la trasmisión aquí.">
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
-
             <div class="dropdown-divider"></div>
-
             <div class="form-group">
               <label for="resumenPublicacionEditar">Resumen:</label>
               <textarea class="form-control rounded-0" id="resumenPublicacionEdit" rows="2" placeholder="Escriba el resumen la publicación aquí." #editModalSubtitle required></textarea>
             </div>
-
             <div class="form-group">
               <label for="cuerpoPublicacionEditar">Cuerpo:</label>
               <textarea class="form-control rounded-0" id="cuerpoPublicacionEdit" rows="4" placeholder="Escriba el cuerpo la publicación aquí." #editModalMessage required></textarea>
             </div>
-
             <div class="form-group">
-
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch4" name="turnImages" [(ngModel)]="editTurnImages" (change)="turnImages(editTurnImages)" [checked]="editTurnImages">
                 <label class="custom-control-label" for="customSwitch4">Imágenes</label>
-
                 <div *ngIf="editTurnImages">
                   <li class="no-list d-block mt-3" *ngFor="let image of PostImages; let indexOf=index">
                     <img src="{{url+'get-post-image/'+image}}" class="img-fluid mx-auto d-block" width="200px" height="200px">
                     <div class="d-flex flex-row-reverse mt-2">
-
                        <a href="#List-{{indexOf}}" class="btn btn-danger" data-toggle="collapse"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </div>
                     <div class="collapse" id="List-{{indexOf}}">
@@ -281,7 +246,6 @@
                       </div>
                     </div>
                   </li>
-
                   <div class="custom-file mt-3">
                     <input type="file" class="custom-file-input rounded-0" id="imagenPublicacionEdit" lang="es" (change)="editFileChangeImages($event)">
                     <label class="custom-file-label rounded-0" for="imagenPublicacion">Selecciona una imágen.</label>
@@ -289,7 +253,6 @@
                 </div>
               </div>
             </div>
-
             <button type="submit" class="btn btn-success btn-block rounded-0" (click)="updatePost()">Confirmar Cambios</button>
           </form>
         </div>
@@ -325,6 +288,68 @@
         </div>
         <div class="modal-footer">
           <button #deleteModal type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (Buscar usuario)-->
+  <div class="modal fade" id="searchModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropSearch" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Resultado de busqueda</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="enableSearch">
+            <div class="table-responsive">
+              <table class="table">
+                <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Título</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Borrar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{search.title}}</td>
+                      <td>{{search.publication_date}}</td>
+                      <td><button type="button" class="btn btn-blue rounded-0" (click)="editPostSearch(search._id)"><i class="fas fa-pencil-alt"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-danger rounded-0" (click)="editPostDelete(search._id)"> <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="!enableSearch">
+            <span> Ningun Resultado </span>
+            <br/><br/>
+            <span> La busqueda se realiza contemplado lo siguinte: </span>
+            <br/><br/>
+            <ul class="ml-5">
+              <li> Mayusculas y Minusculas </li>
+              <li> Espacios entre palabras </li>
+              <li> Espacios en blanco (como espacios al final) </li>
+              <li> Solo por titulo de publicación </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #closeSearch type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

@@ -47,6 +47,12 @@ export class PostsService {
 		return this._http.get(this.url+'get-post/'+id, {headers:headers});
 	}
 
+	getPostByTitle = (title):Observable<any> =>
+	{
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+		return this._http.get(this.url+'get-post-title/'+title, {headers:headers});
+	}
+
 	updatePost = (post):Observable<any> =>
 	{
 		let params = JSON.stringify(post);

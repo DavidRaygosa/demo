@@ -324,6 +324,7 @@ export class BlogComponent implements OnInit {
    		this._userService.registerUser(this.User).subscribe(
    			response => 
    			{
+   				this._SESSION = response.message;
 				// SERVICE CALL GENERAL SETTINGS
 				this._generalService.getGeneral().subscribe(
 				(response : any) =>
@@ -333,7 +334,6 @@ export class BlogComponent implements OnInit {
 					this._generalService.updateGeneral(response.documents[0]).subscribe(
 						response=>
 						{
-   							this._SESSION = response.message;
    							localStorage.setItem('_SESSION', JSON.stringify(this._SESSION));
    							this.getSession();
 						});

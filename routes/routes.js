@@ -29,6 +29,7 @@ var multipartMiddleWarePosts = multipart({uploadDir: './uploads/posts'});
 		router.get('/get-postsrange/:skip?', PostController.getDocumentsRange);
 		router.get('/get-postsrangeadmin/:skip?', PostController.getDocumentsRangeAdmin);
 		router.get('/get-post/:id?', PostController.getDocument);
+		router.get('/get-post-title/:title?', PostController.getDocumentByTitle);
 		router.put('/upload-comment/:id?', PostController.addComment);
 		router.put('/update-post/:id',PostController.updatePost);
 		router.delete('/delete-post/:id',PostController.deleteProject);

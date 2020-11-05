@@ -74,6 +74,17 @@ var controller_posts =
 		});
 	},
 
+	getDocumentByTitle: (req, res) =>
+	{
+		let title = req.params.title;
+		post.find({title:title/*[EJ: year:2019]*/}).exec((error,document) =>
+		{
+			if(error) return res.status(500).send({message: "Error Al Devolver Los Datos"});
+			if(document.length==0) return res.status(200).send({message: "No Hay Proyectos Para Mostrar"});
+			return res.status(200).send({document});
+		});
+	},
+
 	addComment: (req, res) =>
 	{
 		let projectID = req.params.id;

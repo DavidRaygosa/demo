@@ -69,6 +69,14 @@ export class PublicationsComponent implements OnInit {
 	//--------- DELETE MODAL --------
 	public deleteID;
 	public deleting:boolean = false;
+	//--------- SEARCH MODAL --------
+	@ViewChild('searchInput') searchInput;
+	@ViewChild('closeSearch') closeSearch;
+	@ViewChild('searchEditBtn') searchEditBtn;
+	@ViewChild('searchDeleteBtn') searchDeleteBtn;
+	public searchBorderColor;
+	public enableSearch:boolean = false;
+	public search;
 	//--------- CLOSE MODAL --------
 	@ViewChild('registerModal') registerModal;
 	@ViewChild('editModal') editModal;
@@ -200,8 +208,7 @@ export class PublicationsComponent implements OnInit {
 			this.Posts = response.documents;
 			this.Posts.forEach((Element, Index) =>
 			{
-				let date = new Date(Element.publication_date);
-				this.Posts[Index].publication_date = moment.utc(date).fromNow();
+				this.Posts[Index].publication_date = moment.utc(new Date(Element.publication_date)).fromNow();
 			});
 		});
 	}
@@ -593,5 +600,45 @@ export class PublicationsComponent implements OnInit {
    						});
    				},2000)
    			});
+   	}
+
+   	//---------------------------- SEARCH MODAL ---------------------------------------//
+
+   	searchPost()
+   	{
+   		this.searchBorderColor = 'none';
+   		this.enableSearch = false;
+   		if(this.searchInput.nativeElement.value == '') this.searchBorderColor = '1px solid red';
+   		else 
+   		{
+   			this._postService.getPostByTitle(this.searchInput.nativeElement.value).subscribe(
+   				(response : any) =>
+   				{
+   					if(response.message != 'No Hay Proyectos Para Mostrar')
+   					{
+   						this.search = response.document[0];
+						this.search.publication_date = moment.utc(new Date(this.search.publication_date)).fromNow();
+   						this.enableSearch = true;
+   					}
+   				});
+   		}
+   	}
+
+   	editPostSearch(id)
+   	{
+   		this.closeSearch.nativeElement.click();
+   		setTimeout(()=>
+   		{
+   			this.searchEditBtn.nativeElement.click('id');
+   		},500);
+   	}
+
+   	editPostDelete(id)
+   	{
+   		this.closeSearch.nativeElement.click();
+   		setTimeout(()=>
+   		{
+   			this.searchDeleteBtn.nativeElement.click('id');
+   		},500);
    	}
 }

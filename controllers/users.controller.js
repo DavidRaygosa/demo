@@ -27,8 +27,7 @@ var controller_user =
 
 	getDocument: (req, res) =>
 	{
-		var projectID = req.params.id;
-		if(projectID == null) return res.status(404).send({message:'El Proyecto No Existe'});
+		let projectID = req.params.id;
 		user.findById(projectID, (error, document) =>
 		{
 			if(error) return res.status(500).send({message: "Error Al Devolver Los Datos"});
@@ -82,8 +81,8 @@ var controller_user =
 
 	updateUser: (req, res) =>
 	{
-		var projectID = req.params.id;
-		var update = req.body;
+		let projectID = req.params.id;
+		let update = req.body;
 		user.findByIdAndUpdate(projectID, update, {new:true} ,(error, projectUpdated) =>
 		{
 			if(error) return res.status(500).send({message: 'Error Al Actualizar'});
@@ -94,7 +93,7 @@ var controller_user =
 
 	deleteProject: (req, res) =>
 	{
-		var projectID = req.params.id;
+		let projectID = req.params.id;
 		user.findByIdAndDelete(projectID, (error, projectDeleted) =>
 		{
 			if(error) return res.status(500).send({message: 'No Se Ha Podido Borrar El Proyecto'});

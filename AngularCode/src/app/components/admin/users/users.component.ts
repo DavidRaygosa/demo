@@ -38,6 +38,12 @@ export class UsersComponent implements OnInit {
 	@ViewChild('editModal') editModal;
 	@ViewChild('upgradeModal') upgradeModal;
 	@ViewChild('deleteModal') deleteModal;
+	//--------- SEARCH MODAL --------
+	@ViewChild('searchInput') searchInput;
+	@ViewChild('closeSearch') closeSearch;
+	public searchBorderColor;
+	public enableSearch:boolean = false;
+	public search;
 
 	constructor
 	(
@@ -165,6 +171,7 @@ export class UsersComponent implements OnInit {
 
 	getUserID(id)
 	{
+		this.closeSearch.nativeElement.click();
 		this.IDUser = id;
 	}
 
@@ -172,6 +179,7 @@ export class UsersComponent implements OnInit {
 
 	getUserIDEdit(id)
 	{
+		this.closeSearch.nativeElement.click();
 		this._userService.getUserByID(id).subscribe(
 			(response : any)=>
 			{
@@ -314,6 +322,31 @@ export class UsersComponent implements OnInit {
 						});
 				});
    			});
+   	}
+
+   	//---------------------------- SEARCH MODAL ---------------------------------------//
+
+   	searchUser()
+   	{
+   		this.searchBorderColor = 'none';
+   		this.enableSearch = false;
+   		if(this.searchInput.nativeElement.value == '') this.searchBorderColor = '1px solid red';
+   		else 
+   		{
+   			this._userService.checkEmail(this.searchInput.nativeElement.value).subscribe(
+   				(response : any) =>
+   				{
+   					if(response.message != 'No Hay Proyectos Para Mostrar') {this.search = response.documents[0];this.enableSearch = true;}
+   					else
+   					{
+   						this._userService.checkNickname(this.searchInput.nativeElement.value.toUpperCase()).subscribe(
+   							response =>
+   							{
+   								if(response.message != 'No Hay Proyectos Para Mostrar') {this.search = response.documents[0];this.enableSearch = true;}
+   							});
+   					}
+   				});
+   		}
    	}
 
 	//---------------------------- CLOSE MODAL ---------------------------------------//
